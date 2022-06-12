@@ -1,3 +1,63 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": ["airbnb", "next/core-web-vitals", "plugin:prettier/recommended"],
+  "env": {
+    "jest": true
+  },
+  "overrides": [],
+  "plugins": ["simple-import-sort"],
+  "rules": {
+    "jsx-a11y/label-has-associated-control": "off",
+    "array-element-newline": ["error", "consistent"],
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": ["draft", "state"]
+      }
+    ],
+    "global-require": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/no-unescaped-entities": "off",
+    "import/no-named-default": "off",
+    "import/no-named-as-default": "off",
+    "import/extensions": [2, "never"],
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ],
+    "no-nested-ternary": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "usePrettierrc": true,
+        "endOfLine": "auto"
+      }
+    ],
+    "prefer-arrow-callback": [
+      2,
+      {
+        "allowNamedFunctions": true
+      }
+    ],
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function"
+      }
+    ],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js"]
+      }
+    ],
+    "react/prop-types": "error",
+    "simple-import-sort/exports": "error",
+    "simple-import-sort/imports": "error",
+    "no-shadow": "off"
+  }
 }

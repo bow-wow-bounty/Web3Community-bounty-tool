@@ -1,7 +1,15 @@
-import '../styles/globals.css'
+import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+import PropTypes from "prop-types";
 
-export default MyApp
+const App = ({ Component, pageProps }) => {
+  return <Component {...pageProps} />;
+};
+
+export default App;
+
+App.propTypes = {
+  Component: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  pageProps: PropTypes.object.isRequired,
+};
