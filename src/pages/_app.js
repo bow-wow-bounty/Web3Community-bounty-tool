@@ -2,8 +2,14 @@ import "../styles/globals.css";
 
 import PropTypes from "prop-types";
 
+import Modules from "../modules";
+
 const App = ({ Component, pageProps }) => {
-  return <Component {...pageProps} />;
+  return (
+    <Modules>
+      <Component {...pageProps} />
+    </Modules>
+  );
 };
 
 export default App;
