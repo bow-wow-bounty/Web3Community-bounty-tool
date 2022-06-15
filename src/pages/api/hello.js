@@ -1,3 +1,3 @@
-export default function handler(req, res) {
-  res.status(200).json({ name: "John Doe" });
-}
+import hello from "../../apis/hello";
+
+export default hello;

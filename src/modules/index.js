@@ -1,12 +1,15 @@
 import { ChildrenPropType } from "../utils/prop-types";
 import SeoConfig from "./seo-config";
 import SwrConfig from "./swr-config";
+import WalletProvider from "./wallet-provider";
 
 const Modules = ({ children }) => {
   return (
-    <SwrConfig>
-      <SeoConfig>{children}</SeoConfig>
-    </SwrConfig>
+    <WalletProvider>
+      <SwrConfig>
+        <SeoConfig>{children}</SeoConfig>
+      </SwrConfig>
+    </WalletProvider>
   );
 };
 
