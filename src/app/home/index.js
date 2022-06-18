@@ -2,9 +2,8 @@ import { useWallet } from "@solana/wallet-adapter-react";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 import bs58 from "bs58";
 import { useCallback, useEffect } from "react";
-import nacl from "tweetnacl";
 
-import Api from "../../api/core";
+import Api from "../../api/instances/core";
 
 const Home = () => {
   const { signMessage, publicKey, wallet, disconnect, connected } = useWallet();
@@ -12,8 +11,7 @@ const Home = () => {
 
   useEffect(() => {
     (async () => {
-      const data = await Api.get("/hello");
-      console.log({ data });
+      await Api.get("/auth/user");
     })();
   }, []);
 
@@ -21,39 +19,24 @@ const Home = () => {
     (async () => {
       if (connected) {
         try {
-          const message = `Login MF`;
-          const messageUint8 = new TextEncoder().encode(message);
+          const { message } = await Api.post("/auth/request", {
+            address: bs58.encode(publicKey.toBytes()),
+          });
 
           const encodedMessage = new TextEncoder().encode(message);
 
           const signature = await signMessage(encodedMessage);
 
-          const serializedMessage = bs58.encode(messageUint8);
           const serializedSignature = bs58.encode(signature);
           const serializedPublicKey = bs58.encode(publicKey.toBytes());
 
-          const deserializedMessage = bs58.decode(serializedMessage);
-          const deserializedSignature = bs58.decode(serializedSignature);
-          const deserializedPublicKey = bs58.decode(serializedPublicKey);
-
-          console.log({
-            deserializedMessage,
-            serializedMessage,
-            deserializedSignature,
-            serializedSignature,
-            deserializedPublicKey,
-            serializedPublicKey,
+          const { verified } = await Api.post("/auth/verify", {
+            message,
+            signature: serializedSignature,
+            publicKey: serializedPublicKey,
           });
 
-          const verify = nacl.sign.detached.verify(
-            deserializedMessage,
-            deserializedSignature,
-            deserializedPublicKey
-          );
-
-          console.log({ verify });
-
-          if (!verify) {
+          if (!verified) {
             await disconnect();
           }
         } catch (e) {
@@ -83,6 +66,16 @@ const Home = () => {
           Sign In
         </button>
       )}
+
+      <button
+        type="button"
+        onClick={async () => {
+          await Api.delete("/auth/logout");
+          window.location.reload();
+        }}
+      >
+        log out api
+      </button>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { pathOr } from "ramda";
+import { propOr } from "ramda";
 
 export const setupInterceptors = (instance) => {
   instance.interceptors.request.use(
@@ -14,7 +14,7 @@ export const setupInterceptors = (instance) => {
 
   instance.interceptors.response.use(
     (response) => {
-      return pathOr(undefined, ["data", "data"], response);
+      return propOr(undefined, "data", response);
     },
     (error) => {
       // eslint-disable-next-line no-console

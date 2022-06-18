@@ -1,3 +1,3 @@
-import hello from "../../apis/hello";
+import hello from "../../api/functions/hello";
 
 export default hello;
