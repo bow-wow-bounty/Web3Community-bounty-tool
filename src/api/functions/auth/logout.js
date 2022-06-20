@@ -1,7 +1,7 @@
 import handler from "../../utils/handler";
 
-const logout = handler((req, res) => {
-  req.cookies.set("access_token", "", {
+const logout = handler(({ cookies }, res) => {
+  cookies.set("access_token", "", {
     signed: true,
     httpOnly: true,
     expiresIn: 0,

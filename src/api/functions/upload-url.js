@@ -16,10 +16,8 @@ export default async function uploadUrl(req, res) {
       key: req.query.file,
       "Content-Type": req.query.fileType,
     },
-    Expires: 5 * 60, // seconds
-    Conditions: [
-      ["content-length-range", 0, bytes("2MB")], // up to 1 MB
-    ],
+    Expires: 5 * 60,
+    Conditions: [["content-length-range", 0, bytes("2MB", null)]],
   });
 
   res.status(200).json(post);

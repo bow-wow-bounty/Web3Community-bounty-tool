@@ -1,13 +1,15 @@
+import { PrismaClient } from "@prisma/client";
+
 import handler from "../../../utils/handler";
 
-const logout = handler((req, res) => {
-  req.cookies.set("access_token", "", {
-    signed: true,
-    httpOnly: true,
-    expiresIn: 0,
+const prisma = new PrismaClient();
+
+const roleDelete = handler(({ query: { wallet } }, res) => {
+  const role = prisma.roles.delete({
+    where: { wallet },
   });
 
-  return res.status(200).json();
+  res.status(200).json(role);
 });
 
-export default logout;
+export default roleDelete;

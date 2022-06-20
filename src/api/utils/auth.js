@@ -5,11 +5,11 @@ import nacl from "tweetnacl";
 
 import { AUTH_AUDIENCE, AUTH_REQUEST_TOKEN_SECRET } from "../../config/auth";
 
-export const generateAuthRequest = (address) =>
+export const generateAuthRequest = (wallet) =>
   `Login to ${AUTH_AUDIENCE}.
   
   Verification Token: ${AES.encrypt(
-    address,
+    wallet,
     AUTH_REQUEST_TOKEN_SECRET
   ).toString()}`;
 

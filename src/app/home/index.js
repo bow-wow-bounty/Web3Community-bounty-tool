@@ -4,6 +4,10 @@ import bs58 from "bs58";
 import { useCallback, useEffect } from "react";
 
 import Api from "../../api/instances/core";
+import AddWinners from "./components/add-winners";
+import CreateBounty from "./components/create-bounty";
+import ListBounties from "./components/list-bounties";
+import MakeSubmission from "./components/make-submission";
 
 const Home = () => {
   const { signMessage, publicKey, wallet, disconnect, connected } = useWallet();
@@ -12,6 +16,7 @@ const Home = () => {
   useEffect(() => {
     (async () => {
       await Api.get("/auth/user");
+      await Api.get("/bounty/cl4nbz1qn0020tse555qk2t6x");
     })();
   }, []);
 
@@ -20,7 +25,7 @@ const Home = () => {
       if (connected) {
         try {
           const { message } = await Api.post("/auth/request", {
-            address: bs58.encode(publicKey.toBytes()),
+            wallet: bs58.encode(publicKey.toBytes()),
           });
 
           const encodedMessage = new TextEncoder().encode(message);
@@ -76,6 +81,13 @@ const Home = () => {
       >
         log out api
       </button>
+
+      <div>
+        <CreateBounty />
+        <ListBounties />
+        <MakeSubmission />
+        <AddWinners />
+      </div>
     </div>
   );
 };

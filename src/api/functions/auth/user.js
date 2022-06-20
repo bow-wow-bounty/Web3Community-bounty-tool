@@ -3,9 +3,9 @@ import { verify } from "jsonwebtoken";
 import { AUTH_SECRET } from "../../../config/auth";
 import handler from "../../utils/handler";
 
-const authUser = handler((req, res) => {
+const authUser = handler(({ cookies }, res) => {
   try {
-    const token = req.cookies.get("access_token", {
+    const token = cookies.get("access_token", {
       signed: true,
     });
 

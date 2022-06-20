@@ -6,7 +6,7 @@ import { verify } from "jsonwebtoken";
 import { AUTH_COOKIES_KEYS, AUTH_SECRET } from "../../config/auth";
 
 const handler =
-  (main, { isProtected = false } = {}) =>
+  (main, { isProtected = false, roles = [] } = {}) =>
   (req, res) => {
     const cookies = new Cookies(req, res, { keys: AUTH_COOKIES_KEYS });
 
@@ -21,13 +21,20 @@ const handler =
 
         const decoded = verify(token, AUTH_SECRET);
 
-        if (!decoded.address) {
+        if (!decoded.wallet) {
           throw new Error("Unauthorized");
         }
 
-        res.user = { address: decoded.address };
+        req.user = { wallet: decoded.wallet };
+
+        if (roles.length) {
+          if (!roles.some((role) => decoded.roles.includes(role))) {
+            return res.status(403).json();
+          }
+        }
       } catch (e) {
-        return res.status(401).json();
+        res.status(401).json();
+        throw e;
       }
     }
 
