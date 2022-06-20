@@ -9,7 +9,7 @@ import CreateBounty from "./components/create-bounty";
 import ListBounties from "./components/list-bounties";
 import MakeSubmission from "./components/make-submission";
 
-const Home = () => {
+const Demo = () => {
   const { signMessage, publicKey, wallet, disconnect, connected } = useWallet();
   const { setVisible } = useWalletModal();
 
@@ -92,4 +92,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Demo;
