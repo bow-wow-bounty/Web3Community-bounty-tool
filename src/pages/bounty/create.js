@@ -1,3 +1,5 @@
-import CreateBounty from "../../app/bounty/create";
+import noSsr from "../../utils/no-ssr";
 
-export default CreateBounty;
+const CreateBountyWithoutSSR = noSsr(() => import("../../app/bounty/create"));
+
+export default CreateBountyWithoutSSR;

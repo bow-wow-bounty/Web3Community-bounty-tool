@@ -2,6 +2,7 @@ import { LockClosedIcon } from "@heroicons/react/outline";
 import { CheckCircleIcon, DesktopComputerIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 import PropTypes from "prop-types";
+import { stripHtml } from "string-strip-html";
 
 import Link from "../../../../../components/link";
 
@@ -36,7 +37,9 @@ const BountyCard = ({
           </div>
         </div>
         <div className="p-4 pb-2">
-          <p className="text-xs text-gray-500 line-clamp-2">{description}</p>
+          <p className="text-xs text-gray-500 line-clamp-2">
+            {stripHtml(description).result}
+          </p>
         </div>
         <div className="flex w-full items-center justify-between p-4">
           <div className="flex flex-1 items-center justify-start space-x-2">

@@ -9,7 +9,6 @@ export const Input = ({
   name,
   label,
   className,
-  watch,
   ...props
 }) => {
   const error = pathOr("", [name, "message"])(errors);
@@ -18,9 +17,12 @@ export const Input = ({
     <div>
       <label className="block text-gray-700">
         <p
-          className={classNames("block transition-all", {
-            "text-red-500": error,
-          })}
+          className={classNames(
+            "mb-1.5 block text-xs text-gray-400 transition-all empty:hidden",
+            {
+              "text-red-500": error,
+            }
+          )}
         >
           {label}
         </p>
@@ -37,7 +39,7 @@ export const Input = ({
           {...register(name)}
         />
       </label>
-      <p className="mt-2 ml-1 block text-xs text-red-500">
+      <p className="mt-2 ml-1 block text-xs text-red-500 empty:hidden">
         {capitalize(error)}
       </p>
     </div>
@@ -53,7 +55,6 @@ Input.propTypes = {
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
   className: PropTypes.string,
-  watch: PropTypes.func.isRequired,
 };
 
 Input.defaultProps = {
