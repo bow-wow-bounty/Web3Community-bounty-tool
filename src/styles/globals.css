@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "Upheaval";
+    src: url(upheavtt.ttf);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
