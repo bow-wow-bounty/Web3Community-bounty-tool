@@ -75,11 +75,11 @@ export const Button = ({
       onClick={handler}
       className={classNames(
         className,
-        "inline-flex items-center rounded-md border px-4 py-2 text-base font-medium transition-all active:scale-95",
+        "inline-flex items-center rounded-md border px-4 py-2 font-display text-base font-medium transition-all active:scale-95",
         {
           "border-transparent bg-theme-orange shadow-sm hover:bg-yellow-500":
             variant === ButtonVariant.Primary,
-          "border-transparent bg-black text-white shadow-sm hover:bg-yellow-500":
+          "border-transparent bg-black text-white shadow-sm":
             variant === ButtonVariant.PrimaryBW,
           "border-gray-300 bg-white shadow-sm hover:bg-gray-50":
             variant === ButtonVariant.Secondary,

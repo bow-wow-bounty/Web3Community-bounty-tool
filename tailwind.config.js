@@ -1,14 +1,24 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 module.exports = {
   content: ["./src/**/*.js"],
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Upheaval", "ui-sans-serif"],
+        display: ["Upheaval", ...defaultTheme.fontFamily.sans],
+        sans: ["Helvetica", "Arial", ...defaultTheme.fontFamily.sans],
+        body: ["Helvetica", "Arial", ...defaultTheme.fontFamily.sans],
       },
       colors: {
         "theme-orange": "#FFBE00",
+        "theme-green": "#2CCB7B",
+        "theme-dark-green": "#24965C",
+        "theme-blue": "#0B9AD9",
+        "theme-dark-blue": "#1887A8",
       },
     },
   },
-  plugins: [],
+  // eslint-disable-next-line import/no-extraneous-dependencies
+  plugins: [require("@tailwindcss/line-clamp")],
 };

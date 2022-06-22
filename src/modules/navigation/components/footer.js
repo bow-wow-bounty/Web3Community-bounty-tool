@@ -5,7 +5,7 @@ const Footer = () => {
         <div className="mr-2">
           <p>Logo</p>
         </div>
-        <p className="text-lg">
+        <p className="font-display text-lg">
           Thug<span className="ml-[1px] text-white">dao</span> copyright 2022
         </p>
       </div>

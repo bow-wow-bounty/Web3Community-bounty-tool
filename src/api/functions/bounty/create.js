@@ -48,6 +48,7 @@ const bountyCreate = handler(
         pocTwitter,
         pocDiscord,
         creator: wallet,
+        ended: false,
       },
     });
 
