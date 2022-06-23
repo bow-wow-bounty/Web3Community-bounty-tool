@@ -1,10 +1,12 @@
 import { LockClosedIcon, LockOpenIcon } from "@heroicons/react/outline";
 import { CheckCircleIcon, CogIcon, XCircleIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import Api from "../../../api/instances/core";
+import logo from "../../../assets/logo-small.svg";
 
 const fields = [
   {
@@ -86,10 +88,12 @@ const Dashboard = () => {
   return (
     <div className="min-h-full-page w-full overflow-auto bg-theme-light-gray py-12">
       <div className="container relative mx-auto">
-        <div className="flex w-full items-center justify-between rounded-t-md bg-theme-orange py-3 px-4">
+        <div className="relative flex w-full items-center justify-between rounded-t-md bg-theme-orange py-3 px-4">
           <p className="font-display text-2xl">Dashboard</p>
-          <div>
-            <p>Logo</p>
+          <div className="h-full">
+            <div className="relative aspect-[5/3] w-12">
+              <Image src={logo} layout="fill" alt="Logo" objectFit="contain" />
+            </div>
           </div>
         </div>
         <table className="w-full border-hidden text-xs">

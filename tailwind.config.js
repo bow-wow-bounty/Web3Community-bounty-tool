@@ -14,7 +14,7 @@ module.exports = {
         "theme-light-gray": "#FAFAFA",
         "theme-red": "#D8293E",
         "theme-orange": "#FFBE00",
-        "theme-dark-orange": "#FA7952",
+        "theme-dark-orange": "#FFBE00",
         "theme-green": "#2CCB7B",
         "theme-dark-green": "#24965C",
         "theme-blue": "#0B9AD9",

@@ -67,7 +67,7 @@ const CreateBounty = () => {
   const type = watch("type");
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="min-h-full-page container mx-auto py-8">
       <Header />
       <form onSubmit={onSubmit} className="max-w-xl py-12">
         <FormStep title="Upload Image">
