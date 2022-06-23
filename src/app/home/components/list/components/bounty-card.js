@@ -49,7 +49,7 @@ const BountyCard = ({
             </p>
             <p className="inline-flex items-center rounded-full bg-theme-green/10 px-3 py-1 text-sm font-medium text-theme-dark-green">
               <CheckCircleIcon className="mr-1 h-4 w-4" />
-              {!ended ? "Active" : "Ended"}
+              {!ended ? "Active" : "Expired"}
             </p>
           </div>
           <div>
