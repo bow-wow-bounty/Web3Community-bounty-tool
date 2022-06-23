@@ -62,7 +62,9 @@ const Editor = ({ name, label, control, errors }) => {
       >
         {label}
       </p>
-      <Controller name={name} control={control} render={EditorInput} />
+      <div className="rounded border border-black">
+        <Controller name={name} control={control} render={EditorInput} />
+      </div>
       <p className="mt-2 ml-1 block text-xs text-red-500">
         {capitalize(error)}
       </p>

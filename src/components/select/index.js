@@ -27,7 +27,7 @@ export const Select = ({
       </p>
       <select
         className={classNames(
-          "w-full rounded border-2 p-2 focus:outline-none focus:ring-0",
+          "w-full rounded border border-black p-2 focus:outline-none focus:ring-0",
           className
         )}
         {...register(name)}

@@ -29,7 +29,7 @@ export const Input = ({
         <input
           {...props}
           className={classNames(
-            `w-full rounded border-2 p-2 font-light focus:outline-none focus:ring-0`,
+            `w-full rounded border border-black p-2 font-light focus:outline-none focus:ring-0`,
             {
               "border-red-300 placeholder-red-300 focus:border-red-500 focus:ring-red-500":
                 error,

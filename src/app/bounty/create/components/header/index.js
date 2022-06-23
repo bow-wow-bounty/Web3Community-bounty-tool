@@ -1,8 +1,14 @@
+import Image from "next/image";
+
+import logo from "../../../../../assets/logo-small.svg";
+
 const Header = () => {
   return (
     <div className="flex items-center rounded-lg bg-theme-orange p-8 shadow">
       <div className="mr-8 w-28">
-        <p>Logo</p>
+        <div className="relative aspect-[1] h-full">
+          <Image src={logo} layout="fill" alt="Logo" objectFit="contain" />
+        </div>
       </div>
       <div className="flex-1">
         <p className="font-display text-3xl">Create a Bounty</p>
