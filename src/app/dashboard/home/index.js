@@ -4,6 +4,7 @@ import classNames from "classnames";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard/src";
 
 import Api from "../../../api/instances/core";
 import logo from "../../../assets/logo-small.svg";
@@ -62,6 +63,15 @@ const fields = [
   {
     name: "Point of Contact",
     key: "pocName",
+  },
+  {
+    name: "Creator",
+    key: "creator",
+    value: ({ creator }) => (
+      <CopyToClipboard text={creator}>
+        <p className="max-w-[10em] overflow-hidden text-ellipsis">{creator}</p>
+      </CopyToClipboard>
+    ),
   },
   {
     name: "Total Reward",

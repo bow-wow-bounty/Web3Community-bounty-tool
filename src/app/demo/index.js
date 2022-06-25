@@ -16,7 +16,7 @@ const Demo = () => {
   useEffect(() => {
     (async () => {
       await Api.get("/auth/user");
-      await Api.get("/bounty/cl4nbz1qn0020tse555qk2t6x");
+      await Api.get("/bounty/cl4ovm2l500498ke5pwrq9nmr");
     })();
   }, []);
 
