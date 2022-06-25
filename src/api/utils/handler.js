@@ -1,5 +1,4 @@
 /* eslint-disable no-param-reassign */
-
 import Cookies from "cookies";
 import { verify } from "jsonwebtoken";
 
@@ -19,7 +18,7 @@ const handler =
           signed: true,
         });
 
-        const decoded = verify(token, AUTH_SECRET);
+        const decoded = verify(token, AUTH_SECRET, undefined, undefined);
 
         if (!decoded.wallet) {
           throw new Error("Unauthorized");
@@ -34,6 +33,7 @@ const handler =
         }
       } catch (e) {
         res.status(401).json();
+
         throw e;
       }
     }

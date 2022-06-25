@@ -11,6 +11,7 @@ const bountyOwnedList = handler(
         creator: req.user.wallet,
       },
     });
+
     res.status(200).json(bounties);
   },
   { isProtected: true }
