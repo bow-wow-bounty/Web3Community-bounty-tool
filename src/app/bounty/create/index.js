@@ -8,9 +8,9 @@ import { array, date, number, object, string } from "yup";
 import Api from "../../../api/instances/core";
 import Button, { ButtonVariant } from "../../../components/button";
 import Editor from "../../../components/editor";
-import FormStep from "../../../components/form-step";
 import Input from "../../../components/input";
 import Select from "../../../components/select";
+import Step from "../../../components/step";
 import Header from "./components/header";
 
 const schema = object({
@@ -70,7 +70,7 @@ const CreateBounty = () => {
     <div className="min-h-full-page container mx-auto py-8">
       <Header />
       <form onSubmit={onSubmit} className="max-w-xl py-12">
-        <FormStep title="Upload Image">
+        <Step title="Upload Image">
           <Input
             type="text"
             name="image"
@@ -78,8 +78,8 @@ const CreateBounty = () => {
             errors={errors}
             label="Image"
           />
-        </FormStep>
-        <FormStep title="Title">
+        </Step>
+        <Step title="Title">
           <Input
             type="text"
             name="title"
@@ -87,8 +87,8 @@ const CreateBounty = () => {
             errors={errors}
             label="Add a title to your bounty"
           />
-        </FormStep>
-        <FormStep title="Category">
+        </Step>
+        <Step title="Category">
           <Select
             type="text"
             name="category"
@@ -101,8 +101,8 @@ const CreateBounty = () => {
               { key: "other", value: "Other" },
             ]}
           />
-        </FormStep>
-        <FormStep title="Type">
+        </Step>
+        <Step title="Type">
           <Select
             type="text"
             name="type"
@@ -114,9 +114,9 @@ const CreateBounty = () => {
               { key: "closed", value: "Closed" },
             ]}
           />
-        </FormStep>
+        </Step>
         {type === "Closed" && (
-          <FormStep title="Wallets">
+          <Step title="Wallets">
             <div className="mb-2">
               {fields.map((field, index) => (
                 <div key={field.id} className="flex w-full space-x-2">
@@ -141,10 +141,10 @@ const CreateBounty = () => {
             >
               + Add
             </Button>
-          </FormStep>
+          </Step>
         )}
 
-        <FormStep title="Deadline">
+        <Step title="Deadline">
           <Input
             type="datetime-local"
             name="deadline"
@@ -152,27 +152,27 @@ const CreateBounty = () => {
             errors={errors}
             label="Choose the date of expiry of the Bounty"
           />
-        </FormStep>
-        <FormStep title="Description">
+        </Step>
+        <Step title="Description">
           <Editor
             name="description"
             control={control}
             errors={errors}
             label="Description"
           />
-        </FormStep>
-        <FormStep title="Todo">
+        </Step>
+        <Step title="Todo">
           <Editor name="todo" control={control} errors={errors} label="Todo" />
-        </FormStep>
-        <FormStep title="Rewards and distribution">
+        </Step>
+        <Step title="Rewards and distribution">
           <Editor
             name="distribution"
             control={control}
             errors={errors}
             label="Rewards and distribution"
           />
-        </FormStep>
-        <FormStep title="Number of winners">
+        </Step>
+        <Step title="Number of winners">
           <Input
             type="number"
             name="winnerCount"
@@ -180,8 +180,8 @@ const CreateBounty = () => {
             errors={errors}
             label="Number of winners"
           />
-        </FormStep>
-        <FormStep title="Total Reward">
+        </Step>
+        <Step title="Total Reward">
           <Input
             type="number"
             name="totalReward"
@@ -189,24 +189,24 @@ const CreateBounty = () => {
             errors={errors}
             label="Total Reward"
           />
-        </FormStep>
-        <FormStep title="Evaluation criteria">
+        </Step>
+        <Step title="Evaluation criteria">
           <Editor
             name="evaluation"
             control={control}
             errors={errors}
             label="Evaluation criteria"
           />
-        </FormStep>
-        <FormStep title="Resources">
+        </Step>
+        <Step title="Resources">
           <Editor
             name="resources"
             control={control}
             errors={errors}
             label="Resources"
           />
-        </FormStep>
-        <FormStep title="Point of Contact" hideLine>
+        </Step>
+        <Step title="Point of Contact" hideLine>
           <div className="space-y-4">
             <Input
               type="text"
@@ -230,7 +230,7 @@ const CreateBounty = () => {
               label="Discord Handle"
             />
           </div>
-        </FormStep>
+        </Step>
         <Button
           variant={ButtonVariant.PrimaryBW}
           type="submit"

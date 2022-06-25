@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const FormStep = ({ title, children, hideLine }) => {
+const Step = ({ title, children, hideLine }) => {
   return (
     <div className="pt-3">
       <div className="relative pb-8">
@@ -26,15 +26,15 @@ const FormStep = ({ title, children, hideLine }) => {
   );
 };
 
-export default FormStep;
+export default Step;
 
-FormStep.propTypes = {
+Step.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   children: PropTypes.any.isRequired,
   title: PropTypes.string.isRequired,
   hideLine: PropTypes.bool,
 };
 
-FormStep.defaultProps = {
+Step.defaultProps = {
   hideLine: false,
 };
