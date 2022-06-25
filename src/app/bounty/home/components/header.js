@@ -9,9 +9,11 @@ import PropTypes from "prop-types";
 import { stripHtml } from "string-strip-html";
 
 import Button, { ButtonVariant } from "../../../../components/button";
+import Link from "../../../../components/link";
 
 const Header = ({
   bounty: {
+    id,
     image,
     title,
     deadline,
@@ -52,12 +54,14 @@ const Header = ({
         </div>
       </div>
       <div className="pr-8">
-        <Button variant={ButtonVariant.PrimaryBW} className="flex text-lg">
-          <div className="mr-3 rounded-sm bg-white p-0.5 text-black">
-            <PlusIcon className="h-3 w-3" />
-          </div>
-          Add A Submission
-        </Button>
+        <Link href={`/bounty/${id}/submission`} noUnderline>
+          <Button variant={ButtonVariant.PrimaryBW} className="flex text-lg">
+            <div className="mr-3 rounded-sm bg-white p-0.5 text-black">
+              <PlusIcon className="h-3 w-3" />
+            </div>
+            Add A Submission
+          </Button>
+        </Link>
         <div className="absolute bottom-0 right-0 m-6">
           {type === "closed" && <LockClosedIcon className="h-6 w-6" />}
         </div>
@@ -70,6 +74,7 @@ export default Header;
 
 Header.propTypes = {
   bounty: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     deadline: PropTypes.string.isRequired,

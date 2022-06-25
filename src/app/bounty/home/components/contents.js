@@ -3,10 +3,11 @@ import { PlusIcon } from "@heroicons/react/solid";
 import PropTypes from "prop-types";
 
 import Button, { ButtonVariant } from "../../../../components/button";
+import Link from "../../../../components/link";
 import Step from "../../../../components/step";
 
 const Contents = ({
-  bounty: { description, todo, distribution, evaluation, resources },
+  bounty: { id, description, todo, distribution, evaluation, resources },
 }) => {
   return (
     <div className="mt-8">
@@ -47,12 +48,14 @@ const Contents = ({
           winged individuals on the planet.{" "}
         </p>
       </Step>
-      <Button variant={ButtonVariant.PrimaryBW} className="ml-4 mt-8 flex">
-        <div className="mr-3 rounded-sm bg-white p-0.5 text-black">
-          <PlusIcon className="h-3 w-3" />
-        </div>
-        Add A Submission
-      </Button>
+      <Link href={`/bounty/${id}/submission`} noUnderline>
+        <Button variant={ButtonVariant.PrimaryBW} className="ml-4 mt-8 flex">
+          <div className="mr-3 rounded-sm bg-white p-0.5 text-black">
+            <PlusIcon className="h-3 w-3" />
+          </div>
+          Add A Submission
+        </Button>
+      </Link>
     </div>
   );
 };
@@ -61,6 +64,7 @@ export default Contents;
 
 Contents.propTypes = {
   bounty: PropTypes.shape({
+    id: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     todo: PropTypes.string.isRequired,
     distribution: PropTypes.string.isRequired,
