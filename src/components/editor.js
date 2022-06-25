@@ -1,50 +1,15 @@
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import "react-quill/dist/quill.snow.css";
 
 import capitalize from "capitalize";
 import classNames from "classnames";
-import { EditorState } from "draft-js";
-import { stateToHTML } from "draft-js-export-html";
 import PropTypes from "prop-types";
 import { pathOr } from "ramda";
-import { useEffect, useState } from "react";
-import { Editor as DraftEditor } from "react-draft-wysiwyg";
 import { Controller } from "react-hook-form";
+import ReactQuill from "react-quill";
 
 // eslint-disable-next-line react/prop-types
-const EditorInput = ({ field: { onChange } }) => {
-  const [state, updateState] = useState(EditorState.createEmpty());
-
-  useEffect(() => {
-    const value = stateToHTML(state.getCurrentContent());
-    onChange(value);
-  }, [onChange, state]);
-
-  return (
-    <DraftEditor
-      editorState={state}
-      onEditorStateChange={updateState}
-      toolbar={{
-        options: ["inline", "blockType"],
-        inline: {
-          options: ["bold", "italic", "underline", "strikethrough"],
-          bold: { className: "bordered-option-classname" },
-          italic: { className: "bordered-option-classname" },
-          underline: { className: "bordered-option-classname" },
-          strikethrough: { className: "bordered-option-classname" },
-          code: { className: "bordered-option-classname" },
-        },
-        blockType: {
-          className: "bordered-option-classname",
-        },
-        fontSize: {
-          className: "bordered-option-classname",
-        },
-        fontFamily: {
-          className: "bordered-option-classname",
-        },
-      }}
-    />
-  );
+const EditorInput = ({ field: { value, onChange } }) => {
+  return <ReactQuill value={value || ""} onChange={onChange} />;
 };
 
 const Editor = ({ name, label, control, errors }) => {
