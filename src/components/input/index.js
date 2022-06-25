@@ -16,14 +16,7 @@ export const Input = ({
   return (
     <div>
       <label className="block text-gray-700">
-        <p
-          className={classNames(
-            "mb-1.5 block text-xs text-gray-400 transition-all empty:hidden",
-            {
-              "text-red-500": error,
-            }
-          )}
-        >
+        <p className="mb-1.5 block text-xs text-gray-400 transition-all empty:hidden">
           {label}
         </p>
         <input

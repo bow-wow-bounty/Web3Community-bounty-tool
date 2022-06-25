@@ -1,7 +1,6 @@
 import "react-quill/dist/quill.snow.css";
 
 import capitalize from "capitalize";
-import classNames from "classnames";
 import PropTypes from "prop-types";
 import { pathOr } from "ramda";
 import { Controller } from "react-hook-form";
@@ -17,17 +16,10 @@ const Editor = ({ name, label, control, errors }) => {
 
   return (
     <div>
-      <p
-        className={classNames(
-          "mb-1.5 block text-xs text-gray-400 transition-all",
-          {
-            "text-red-500": error,
-          }
-        )}
-      >
+      <p className="mb-1.5 block text-xs text-gray-400 transition-all">
         {label}
       </p>
-      <div className="rounded border border-black">
+      <div className="rounded border border-black bg-white">
         <Controller name={name} control={control} render={EditorInput} />
       </div>
       <p className="mt-2 ml-1 block text-xs text-red-500">

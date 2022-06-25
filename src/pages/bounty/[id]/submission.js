@@ -1,3 +1,7 @@
-import Submission from "../../../app/bounty/submission";
+import noSSR from "../../../utils/no-ssr";
 
-export default Submission;
+const SubmissionWithoutSSR = noSSR(() =>
+  import("../../../app/bounty/submission")
+);
+
+export default SubmissionWithoutSSR;
