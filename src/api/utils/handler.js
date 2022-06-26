@@ -2,12 +2,12 @@
 import Cookies from "cookies";
 import { verify } from "jsonwebtoken";
 
-import { AUTH_COOKIES_KEYS, AUTH_SECRET } from "../../config/auth";
+import { AUTH_SECRET } from "../../config/auth";
 
 const handler =
   (main, { isProtected = false, roles = [] } = {}) =>
   (req, res) => {
-    const cookies = new Cookies(req, res, { keys: AUTH_COOKIES_KEYS });
+    const cookies = new Cookies(req, res);
 
     req.cookies = cookies;
     res.cookies = cookies;
@@ -15,7 +15,7 @@ const handler =
     if (isProtected) {
       try {
         const token = cookies.get("access_token", {
-          signed: true,
+          signed: false,
         });
 
         const decoded = verify(token, AUTH_SECRET, undefined, undefined);

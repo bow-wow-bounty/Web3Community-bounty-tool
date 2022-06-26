@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { sign } from "jsonwebtoken";
+import jsonwebtoken from "jsonwebtoken";
 import { applySpec, pathOr, propOr } from "ramda";
 
 import { AUTH_EXPIRY_DURATION, AUTH_SECRET } from "../../../config/auth";
@@ -24,7 +24,7 @@ const authVerify = handler(
         },
       });
 
-      const token = sign(
+      const token = jsonwebtoken.sign(
         createToken({
           publicKey,
           rolesEntry,
@@ -35,7 +35,7 @@ const authVerify = handler(
       );
 
       res.cookies.set("access_token", token, {
-        signed: true,
+        signed: false,
         httpOnly: true,
         expiresIn: AUTH_EXPIRY_DURATION,
       });
