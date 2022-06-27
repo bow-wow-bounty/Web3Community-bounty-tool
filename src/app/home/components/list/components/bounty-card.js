@@ -71,6 +71,6 @@ BountyCard.propTypes = {
   category: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   deadline: PropTypes.string.isRequired,
-  ended: PropTypes.string.isRequired,
-  totalReward: PropTypes.string.isRequired,
+  ended: PropTypes.bool.isRequired,
+  totalReward: PropTypes.number.isRequired,
 };

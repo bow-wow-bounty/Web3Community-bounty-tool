@@ -1,3 +1,4 @@
+import AuthStore from "../stores/auth-store";
 import { ChildrenPropType } from "../utils/prop-types";
 import Navigation from "./navigation";
 import SeoConfig from "./seo-config";
@@ -9,7 +10,9 @@ const Modules = ({ children }) => {
     <WalletProvider>
       <SwrConfig>
         <SeoConfig>
-          <Navigation>{children}</Navigation>
+          <AuthStore.Provider>
+            <Navigation>{children}</Navigation>
+          </AuthStore.Provider>
         </SeoConfig>
       </SwrConfig>
     </WalletProvider>

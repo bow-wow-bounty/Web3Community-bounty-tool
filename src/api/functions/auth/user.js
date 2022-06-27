@@ -5,9 +5,7 @@ import handler from "../../utils/handler";
 
 const authUser = handler(({ cookies }, res) => {
   try {
-    const token = cookies.get("access_token", {
-      signed: true,
-    });
+    const token = cookies.get("access_token");
 
     const decoded = verify(token, AUTH_SECRET);
 
