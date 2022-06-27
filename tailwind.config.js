@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 // eslint-disable-next-line import/no-extraneous-dependencies
 const defaultTheme = require("tailwindcss/defaultTheme");
 
@@ -22,6 +23,8 @@ module.exports = {
       },
     },
   },
-  // eslint-disable-next-line import/no-extraneous-dependencies
-  plugins: [require("@tailwindcss/line-clamp")],
+  plugins: [
+    require("@tailwindcss/line-clamp"),
+    require("@tailwindcss/typography"),
+  ],
 };

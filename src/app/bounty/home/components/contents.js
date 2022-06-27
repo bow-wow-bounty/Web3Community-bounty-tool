@@ -1,4 +1,6 @@
 /* eslint-disable react/no-danger */
+import "react-quill/dist/quill.snow.css";
+
 import { PlusIcon } from "@heroicons/react/solid";
 import PropTypes from "prop-types";
 
@@ -14,28 +16,31 @@ const Contents = ({
       <Step title="About the bounty">
         <div
           dangerouslySetInnerHTML={{ __html: description }}
-          className="prose"
+          className="prose text-sm"
         />
       </Step>
       <Step title="Your tasks">
-        <div dangerouslySetInnerHTML={{ __html: todo }} className="prose" />
+        <div
+          dangerouslySetInnerHTML={{ __html: todo }}
+          className="prose text-sm"
+        />
       </Step>
       <Step title="Prize Distribution">
         <div
           dangerouslySetInnerHTML={{ __html: distribution }}
-          className="prose"
+          className="prose text-sm"
         />
       </Step>
       <Step title="Evaluation criteria">
         <div
           dangerouslySetInnerHTML={{ __html: evaluation }}
-          className="prose"
+          className="prose text-sm"
         />
       </Step>
       <Step title="Resources">
         <div
           dangerouslySetInnerHTML={{ __html: resources }}
-          className="prose"
+          className="prose text-sm"
         />
       </Step>
       <Step title="About the Thugdao" hideLine>

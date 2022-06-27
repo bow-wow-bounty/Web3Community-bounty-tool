@@ -20,4 +20,8 @@
   .min-h-full-page {
     min-height: calc(100vh - 72px - 48px);
   }
+
+  .prose {
+    --tw-prose-links: blue !important;
+  }
 }
