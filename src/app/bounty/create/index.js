@@ -190,7 +190,7 @@ const CreateBounty = () => {
             name="totalReward"
             register={register}
             errors={errors}
-            label="Total Reward"
+            label="Total Reward (SOL)"
           />
         </Step>
         <Step title="Evaluation criteria">
