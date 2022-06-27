@@ -122,7 +122,7 @@ const CreateBounty = () => {
           <Step title="Wallets">
             <div className="mb-2">
               {fields.map((field, index) => (
-                <div key={field.id} className="flex w-full space-x-2">
+                <div key={field.id} className="mb-2 flex w-full space-x-2">
                   <div className="flex-1">
                     <Input
                       type="text"

@@ -1,7 +1,7 @@
 import { PlusCircleIcon, ViewGridIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 
-import logo from "../../../assets/logo-full.svg";
+import logo from "../../../assets/logo-full.png";
 import Button, { ButtonVariant } from "../../../components/button";
 import Link from "../../../components/link";
 import AuthStore from "../../../stores/auth-store";

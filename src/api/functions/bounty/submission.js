@@ -10,8 +10,8 @@ const bountySubmission = handler(
       user: { wallet },
       body: {
         bountyId,
-        link,
-        file,
+        links,
+        files,
         discord,
         twitter,
         telegram,
@@ -31,8 +31,8 @@ const bountySubmission = handler(
       update: {
         wallet,
         bountyId,
-        link,
-        file,
+        links,
+        files,
         discord,
         twitter,
         telegram,
@@ -42,8 +42,8 @@ const bountySubmission = handler(
       create: {
         wallet,
         bountyId,
-        link,
-        file,
+        links,
+        files,
         discord,
         twitter,
         telegram,
