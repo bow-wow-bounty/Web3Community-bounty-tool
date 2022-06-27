@@ -10,12 +10,30 @@ const AuthStore = createContainer(() => {
   const { signMessage, publicKey, wallet, disconnect, connected } = useWallet();
   const { setVisible } = useWalletModal();
 
+  const [initialized, toggleInitialized] = useState(false);
+
   const [verified, setVerified] = useState(false);
 
   const [user, updateUser] = useState({
     wallet: "",
     roles: [],
   });
+
+  const isProcessing = useMemo(
+    () => Boolean(wallet && publicKey && !user?.wallet),
+    [publicKey, user?.wallet, wallet]
+  );
+
+  const isLoggedIn = useMemo(() => Boolean(user?.wallet), [user?.wallet]);
+
+  useEffect(() => {
+    if (!initialized) {
+      Api.get("/auth/user").then((data) => {
+        updateUser(data);
+        toggleInitialized(true);
+      });
+    }
+  }, [initialized]);
 
   useEffect(() => {
     if (verified) {
@@ -25,7 +43,7 @@ const AuthStore = createContainer(() => {
 
   useEffect(() => {
     (async () => {
-      if (connected) {
+      if (initialized && connected && !isLoggedIn) {
         try {
           const { message } = await Api.post("/auth/request", {
             wallet: bs58.encode(publicKey.toBytes()),
@@ -55,14 +73,7 @@ const AuthStore = createContainer(() => {
         }
       }
     })();
-  }, [connected, disconnect, publicKey, signMessage]);
-
-  const isProcessing = useMemo(
-    () => Boolean(wallet && publicKey && !user?.wallet),
-    [publicKey, user?.wallet, wallet]
-  );
-
-  const isLoggedIn = useMemo(() => Boolean(user?.wallet), [user?.wallet]);
+  }, [connected, disconnect, initialized, isLoggedIn, publicKey, signMessage]);
 
   const logout = useCallback(async () => {
     await disconnect();

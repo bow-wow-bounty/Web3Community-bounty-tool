@@ -7,9 +7,7 @@ const List = () => {
   const [bounties, setBounties] = useState([]);
 
   useEffect(() => {
-    Api.get("/bounty").then((list) => {
-      setBounties(list);
-    });
+    Api.get("/bounty").then(setBounties);
   }, []);
 
   return (
