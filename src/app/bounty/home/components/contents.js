@@ -54,7 +54,7 @@ const Contents = ({
         </p>
       </Step>
       <Link href={`/bounty/${id}/submission`} noUnderline>
-        <Button variant={ButtonVariant.PrimaryBW} className="ml-4 mt-8 flex">
+        <Button variant={ButtonVariant.PrimaryBW} className="ml-12 mt-8 flex">
           <div className="mr-3 rounded-sm bg-white p-0.5 text-black">
             <PlusIcon className="h-3 w-3" />
           </div>

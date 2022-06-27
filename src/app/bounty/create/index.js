@@ -235,6 +235,7 @@ const CreateBounty = () => {
           variant={ButtonVariant.PrimaryBW}
           type="submit"
           disabled={isSubmitting}
+          className="ml-12"
         >
           Complete
         </Button>
