@@ -38,6 +38,7 @@ const bountySubmission = handler(
         telegram,
         email,
         description,
+        reviewed: false,
       },
       create: {
         wallet,
@@ -49,6 +50,7 @@ const bountySubmission = handler(
         telegram,
         email,
         description,
+        reviewed: false,
       },
     });
 

@@ -69,6 +69,7 @@ model Submission {
   telegram    String
   email       String
   description String
+  reviewed    Boolean
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
