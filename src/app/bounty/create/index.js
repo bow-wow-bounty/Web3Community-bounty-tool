@@ -43,6 +43,9 @@ const CreateBounty = () => {
     formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      wallets: [],
+    },
   });
 
   const { fields, append, remove } = useFieldArray({
