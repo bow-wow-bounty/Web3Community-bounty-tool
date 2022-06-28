@@ -1,7 +1,13 @@
 import { LockClosedIcon } from "@heroicons/react/outline";
-import { CheckCircleIcon, DesktopComputerIcon } from "@heroicons/react/solid";
+import {
+  CheckCircleIcon,
+  DesktopComputerIcon,
+  XCircleIcon,
+} from "@heroicons/react/solid";
+import classNames from "classnames";
 import Image from "next/image";
 import PropTypes from "prop-types";
+import { useMemo } from "react";
 import { stripHtml } from "string-strip-html";
 
 import Link from "../../../../../components/link";
@@ -14,9 +20,10 @@ const BountyCard = ({
   category,
   type,
   deadline,
-  ended,
   totalReward,
 }) => {
+  const ended = useMemo(() => new Date() >= new Date(deadline), [deadline]);
+
   return (
     <Link href={`/bounty/${id}`}>
       <div>
@@ -47,8 +54,20 @@ const BountyCard = ({
               <DesktopComputerIcon className="mr-1 h-4 w-4" />
               {category}
             </p>
-            <p className="inline-flex items-center rounded-full bg-theme-green/10 px-3 py-1 text-sm font-medium text-theme-dark-green">
-              <CheckCircleIcon className="mr-1 h-4 w-4" />
+            <p
+              className={classNames(
+                "inline-flex items-center rounded-full px-3 py-1 text-sm font-medium",
+                {
+                  "bg-theme-green/10 text-theme-dark-green": !ended,
+                  "bg-theme-red/10 text-theme-red": ended,
+                }
+              )}
+            >
+              {!ended ? (
+                <CheckCircleIcon className="mr-1 h-4 w-4" />
+              ) : (
+                <XCircleIcon className="mr-1 h-4 w-4" />
+              )}
               {!ended ? "Active" : "Expired"}
             </p>
           </div>
@@ -71,6 +90,5 @@ BountyCard.propTypes = {
   category: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   deadline: PropTypes.string.isRequired,
-  ended: PropTypes.bool.isRequired,
   totalReward: PropTypes.number.isRequired,
 };
