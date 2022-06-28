@@ -12,6 +12,9 @@ const Submissions = ({ submissions, reviewSubmissions }) => {
       <p className="font-display text-3xl">Submissions Received</p>
       <div className="mt-8 rounded-md bg-white p-6 pt-0 shadow">
         <dl className="space-y-6 divide-y divide-gray-200">
+          {!submissions.length && (
+            <p className="pt-6 text-sm">No submissions made yet.</p>
+          )}
           {submissions.map(
             (
               {
