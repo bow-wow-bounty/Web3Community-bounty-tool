@@ -4,12 +4,15 @@ import handler from "../../../utils/handler";
 
 const prisma = new PrismaClient();
 
-const roleDelete = handler(({ query: { wallet } }, res) => {
-  const role = prisma.roles.delete({
-    where: { wallet },
-  });
+const roleDelete = handler(
+  ({ query: { wallet } }, res) => {
+    const role = prisma.roles.delete({
+      where: { wallet },
+    });
 
-  res.status(200).json(role);
-});
+    res.status(200).json(role);
+  },
+  { isProtected: true, roles: ["SUPER_ADMIN"] }
+);
 
 export default roleDelete;
