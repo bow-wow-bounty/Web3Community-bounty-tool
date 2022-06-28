@@ -16,31 +16,31 @@ const Contents = ({
       <Step title="About the bounty">
         <div
           dangerouslySetInnerHTML={{ __html: description }}
-          className="prose text-sm"
+          className="prose max-w-full text-sm"
         />
       </Step>
       <Step title="Your tasks">
         <div
           dangerouslySetInnerHTML={{ __html: todo }}
-          className="prose text-sm"
+          className="prose max-w-full text-sm"
         />
       </Step>
       <Step title="Prize Distribution">
         <div
           dangerouslySetInnerHTML={{ __html: distribution }}
-          className="prose text-sm"
+          className="prose max-w-full text-sm"
         />
       </Step>
       <Step title="Evaluation criteria">
         <div
           dangerouslySetInnerHTML={{ __html: evaluation }}
-          className="prose text-sm"
+          className="prose max-w-full text-sm"
         />
       </Step>
       <Step title="Resources">
         <div
           dangerouslySetInnerHTML={{ __html: resources }}
-          className="prose text-sm"
+          className="prose max-w-full text-sm"
         />
       </Step>
       <Step title="About the Thugdao" hideLine>

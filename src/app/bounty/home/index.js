@@ -20,12 +20,14 @@ const Bounty = () => {
   }, [id]);
 
   return (
-    bounty && (
-      <div className="container mx-auto py-12">
-        <Header bounty={bounty} />
-        <Contents bounty={bounty} />
-      </div>
-    )
+    <div className="min-h-full-page container mx-auto py-12">
+      {bounty && (
+        <>
+          <Header bounty={bounty} />
+          <Contents bounty={bounty} />
+        </>
+      )}
+    </div>
   );
 };
 
