@@ -16,10 +16,13 @@ const Input = ({ field: { value, onChange, error }, notImage }) => {
 
   const handleFileChange = useCallback(
     async (file) => {
-      toggleProcessing(true);
-      const { url } = await uploadToS3(file);
-      onChange(url);
-      toggleProcessing(false);
+      try {
+        toggleProcessing(true);
+        const { url } = await uploadToS3(file);
+        onChange(url);
+      } finally {
+        toggleProcessing(false);
+      }
     },
     [onChange, uploadToS3]
   );
