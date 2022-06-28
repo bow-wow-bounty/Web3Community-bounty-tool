@@ -28,10 +28,12 @@ const AuthStore = createContainer(() => {
 
   useEffect(() => {
     if (!initialized) {
-      Api.get("/auth/user").then((data) => {
-        updateUser(data);
-        toggleInitialized(true);
-      });
+      Api.get("/auth/user")
+        .then((data) => {
+          updateUser(data);
+          toggleInitialized(true);
+        })
+        .catch(() => toggleInitialized(true));
     }
   }, [initialized]);
 
