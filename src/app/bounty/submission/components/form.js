@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
-import { object, string } from "yup";
+import { array, object, string } from "yup";
 
 import Api from "../../../../api/instances/core";
 import Button, { ButtonVariant } from "../../../../components/button";
@@ -13,8 +13,8 @@ import Input from "../../../../components/input";
 import Step from "../../../../components/step";
 
 const schema = object({
-  links: string().required(),
-  files: string().required(),
+  links: array().of(string()).required(),
+  files: array().of(string()).required(),
   discord: string().required(),
   twitter: string().required(),
   telegram: string().required(),

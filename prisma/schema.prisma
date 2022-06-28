@@ -62,8 +62,8 @@ model Submission {
   wallet      String
   bounty      Bounty   @relation(fields: [bountyId], references: [id])
   bountyId    String
-  link        String[]
-  file        String[]
+  links       String[]
+  files       String[]
   discord     String
   twitter     String
   telegram    String
