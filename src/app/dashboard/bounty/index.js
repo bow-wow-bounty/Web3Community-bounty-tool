@@ -14,7 +14,7 @@ const BountyDashboard = () => {
 
   const loadData = useCallback(() => {
     if (id) {
-      Api.get(`/bounty/${id}`).then((data) => {
+      Api.get(`/bounty/owned/${id}`).then((data) => {
         setBounty(data);
       });
     }
