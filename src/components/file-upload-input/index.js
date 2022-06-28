@@ -10,7 +10,7 @@ import { Controller } from "react-hook-form";
 
 import Button, { ButtonVariant } from "../button";
 
-const Input = ({ field: { value, onChange, error } }) => {
+const Input = ({ field: { value, onChange, error }, notImage }) => {
   const { FileInput, openFileDialog, uploadToS3 } = useS3Upload();
   const [processing, toggleProcessing] = useState(false);
 
@@ -33,7 +33,7 @@ const Input = ({ field: { value, onChange, error } }) => {
 
   return (
     <>
-      {value && (
+      {!notImage && value && (
         <div className="relative mb-4 aspect-[5/3] w-1/2 overflow-hidden rounded">
           <Image layout="fill" src={value} alt="Cover" objectFit="cover" />
         </div>
@@ -59,7 +59,9 @@ const Input = ({ field: { value, onChange, error } }) => {
             onClick={openFileDialog}
             disabled={processing}
           >
-            {!processing ? "Upload Image" : "Uploading..."}
+            {!processing
+              ? `Upload ${notImage ? `File` : `Image`}`
+              : "Uploading..."}
           </Button>
         ) : (
           <Button variant={ButtonVariant.PrimaryBW} onClick={clear}>
@@ -71,7 +73,7 @@ const Input = ({ field: { value, onChange, error } }) => {
   );
 };
 
-const FileUploadInput = ({ name, label, control, errors }) => {
+const FileUploadInput = ({ name, label, control, errors, notImage }) => {
   const error = pathOr("", [name, "message"])(errors);
 
   return (
@@ -80,7 +82,11 @@ const FileUploadInput = ({ name, label, control, errors }) => {
         {label}
       </p>
 
-      <Controller name={name} control={control} render={Input} />
+      <Controller
+        name={name}
+        control={control}
+        render={({ field }) => <Input field={field} notImage={notImage} />}
+      />
 
       <p className="mt-2 ml-1 block text-xs text-red-500">
         {capitalize(error)}
@@ -98,9 +104,11 @@ FileUploadInput.propTypes = {
   label: PropTypes.string,
   // eslint-disable-next-line react/forbid-prop-types
   control: PropTypes.object.isRequired,
+  notImage: PropTypes.bool,
 };
 
 FileUploadInput.defaultProps = {
   errors: {},
   label: "",
+  notImage: false,
 };

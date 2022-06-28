@@ -9,6 +9,7 @@ import { array, object, string } from "yup";
 import Api from "../../../../api/instances/core";
 import Button, { ButtonVariant } from "../../../../components/button";
 import Editor from "../../../../components/editor";
+import FileUploadInput from "../../../../components/file-upload-input";
 import Input from "../../../../components/input";
 import Step from "../../../../components/step";
 
@@ -34,7 +35,7 @@ const Form = () => {
     resolver: yupResolver(schema),
     defaultValues: {
       links: ["https://"],
-      files: ["https://"],
+      files: [],
     },
   });
 
@@ -106,11 +107,11 @@ const Form = () => {
           {files.fields.map((field, index) => (
             <div key={field.id} className="mb-2 flex w-full space-x-2">
               <div className="flex-1">
-                <Input
-                  type="text"
+                <FileUploadInput
+                  control={control}
                   name={`files.${index}`}
-                  register={register}
                   errors={errors}
+                  notImage
                 />
               </div>
               <Button onClick={() => files.remove(index)} className="px-3">

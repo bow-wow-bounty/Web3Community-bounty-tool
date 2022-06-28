@@ -76,12 +76,7 @@ const CreateBounty = () => {
       <Header />
       <form onSubmit={onSubmit} className="max-w-xl py-12">
         <Step title="Upload Image">
-          <FileUploadInput
-            control={control}
-            name="image"
-            register={register}
-            errors={errors}
-          />
+          <FileUploadInput control={control} name="image" errors={errors} />
         </Step>
         <Step title="Title">
           <Input
