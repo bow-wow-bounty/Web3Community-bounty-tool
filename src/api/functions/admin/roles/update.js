@@ -5,21 +5,25 @@ import handler from "../../../utils/handler";
 const prisma = new PrismaClient();
 
 const roleUpdate = handler(
-  (req, res) => {
-    const { wallet, roles } = req.body;
+  async (req, res) => {
+    const { roles } = req.body;
 
-    const role = prisma.roles.upsert({
-      where: { wallet },
-      update: {
-        roles,
-      },
-      create: {
-        wallet,
-        roles,
-      },
-    });
+    const updates = await Promise.all(
+      roles.map(({ wallet, roles }) =>
+        prisma.roles.upsert({
+          where: { wallet },
+          update: {
+            roles,
+          },
+          create: {
+            wallet,
+            roles,
+          },
+        })
+      )
+    );
 
-    res.status(200).json(role);
+    res.status(200).json(updates);
   },
   { isProtected: true, roles: ["SUPER_ADMIN"] }
 );

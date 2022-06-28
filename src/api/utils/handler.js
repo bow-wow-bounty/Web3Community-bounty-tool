@@ -24,7 +24,7 @@ const handler =
           throw new Error("Unauthorized");
         }
 
-        req.user = { wallet: decoded.wallet };
+        req.user = { wallet: decoded.wallet, roles: decoded.roles };
 
         if (roles.length) {
           if (!roles.some((role) => decoded.roles.includes(role))) {

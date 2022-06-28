@@ -1,5 +1,6 @@
 import { PlusCircleIcon, ViewGridIcon } from "@heroicons/react/solid";
 import Image from "next/image";
+import { useMemo } from "react";
 
 import logo from "../../../assets/logo-full.png";
 import Button, { ButtonVariant } from "../../../components/button";
@@ -7,7 +8,21 @@ import Link from "../../../components/link";
 import AuthStore from "../../../stores/auth-store";
 
 const Header = () => {
-  const { login, logout, isLoggedIn, isProcessing } = AuthStore.useContainer();
+  const { login, logout, isLoggedIn, isProcessing, user } =
+    AuthStore.useContainer();
+
+  const isSuperAdmin = useMemo(
+    () => Boolean(user?.roles?.includes("SUPER_ADMIN")),
+    [user?.roles]
+  );
+  const isAdmin = useMemo(
+    () => Boolean(user?.roles?.includes("ADMIN")),
+    [user?.roles]
+  );
+  const isCreator = useMemo(
+    () => Boolean(user?.roles?.includes("CREATOR")),
+    [user?.roles]
+  );
 
   return (
     <div className="sticky top-0 z-10 flex min-h-[72px] w-full bg-white shadow-md">
@@ -20,23 +35,39 @@ const Header = () => {
           </Link>
         </div>
         <div className="flex flex-1 justify-end space-x-4">
-          <Link href="/dashboard">
-            <Button
-              variant={
-                !isLoggedIn ? ButtonVariant.Secondary : ButtonVariant.PrimaryBW
-              }
-              disabled={!isLoggedIn}
-            >
-              <ViewGridIcon className="mr-1 h-5 w-5 translate-y-[1px]" />
-              Dashboard
-            </Button>
-          </Link>
-          <Link href="/bounty/create">
-            <Button variant={ButtonVariant.Secondary} disabled={!isLoggedIn}>
-              <PlusCircleIcon className="mr-1 h-5 w-5 translate-y-[1px]" />
-              Create Bounty
-            </Button>
-          </Link>
+          {(isCreator || isAdmin) && (
+            <Link href="/dashboard">
+              <Button
+                variant={
+                  !isLoggedIn
+                    ? ButtonVariant.Secondary
+                    : ButtonVariant.PrimaryBW
+                }
+                disabled={!isLoggedIn}
+              >
+                <ViewGridIcon className="mr-1 h-5 w-5 translate-y-[1px]" />
+                Dashboard
+              </Button>
+            </Link>
+          )}
+
+          {isCreator && (
+            <Link href="/bounty/create">
+              <Button variant={ButtonVariant.Secondary} disabled={!isLoggedIn}>
+                <PlusCircleIcon className="mr-1 h-5 w-5 translate-y-[1px]" />
+                Create Bounty
+              </Button>
+            </Link>
+          )}
+
+          {isSuperAdmin && (
+            <Link href="/admin">
+              <Button variant={ButtonVariant.Secondary} disabled={!isLoggedIn}>
+                Admin
+              </Button>
+            </Link>
+          )}
+
           <Button
             variant={ButtonVariant.Primary}
             onClick={() => (!isLoggedIn ? login() : logout())}

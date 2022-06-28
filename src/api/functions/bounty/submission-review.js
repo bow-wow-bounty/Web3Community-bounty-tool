@@ -20,7 +20,7 @@ const bountySubmissionReview = handler(
 
     res.status(200).json(submission);
   },
-  { isProtected: true }
+  { isProtected: true, roles: ["CREATOR"] }
 );
 
 export default bountySubmissionReview;

@@ -5,8 +5,8 @@ import handler from "../../../utils/handler";
 const prisma = new PrismaClient();
 
 const roleDelete = handler(
-  ({ query: { wallet } }, res) => {
-    const role = prisma.roles.delete({
+  async ({ query: { wallet } }, res) => {
+    const role = await prisma.roles.delete({
       where: { wallet },
     });
 

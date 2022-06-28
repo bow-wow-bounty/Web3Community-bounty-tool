@@ -54,7 +54,7 @@ const bountyCreate = handler(
 
     res.status(201).json(bounty);
   },
-  { isProtected: true }
+  { isProtected: true, roles: ["CREATOR"] }
 );
 
 export default bountyCreate;
