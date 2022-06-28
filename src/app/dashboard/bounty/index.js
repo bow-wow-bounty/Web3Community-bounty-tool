@@ -36,22 +36,25 @@ const BountyDashboard = () => {
     [id, loadData]
   );
 
-  return !bounty ? null : (
+  return (
     <div className="min-h-full-page w-full overflow-auto bg-theme-light-gray py-12">
-      <div className="container mx-auto">
-        <Header bounty={bounty} />
-        <div className="relative mt-12 flex w-full space-x-8 overflow-hidden">
-          <Submissions
-            submissions={bounty?.submissions}
-            reviewSubmissions={reviewSubmissions}
-          />
-          <Winners
-            winners={bounty?.winners}
-            rewardCurrency={bounty?.rewardCurrency}
-            refresh={loadData}
-          />
+      {!bounty ? null : (
+        <div className="container mx-auto">
+          <Header bounty={bounty} />
+          <div className="relative mt-12 flex w-full space-x-8 overflow-hidden">
+            <Submissions
+              submissions={bounty?.submissions}
+              reviewSubmissions={reviewSubmissions}
+            />
+            <Winners
+              winners={bounty?.winners}
+              winnerCount={bounty?.winnerCount}
+              rewardCurrency={bounty?.rewardCurrency}
+              refresh={loadData}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

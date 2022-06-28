@@ -21,7 +21,7 @@ const schema = object({
     .required(),
 });
 
-const Winners = ({ winners, rewardCurrency, refresh }) => {
+const Winners = ({ winners, winnerCount, rewardCurrency, refresh }) => {
   const router = useRouter();
 
   const {
@@ -36,11 +36,10 @@ const Winners = ({ winners, rewardCurrency, refresh }) => {
       bountyId: "cl4nbz1qn0020tse555qk2t6x",
       winners: winners?.length
         ? winners
-        : [
-            { wallet: "", amount: 0 },
-            { wallet: "", amount: 0 },
-            { wallet: "", amount: 0 },
-          ],
+        : Array.from({ length: winnerCount }).map(() => ({
+            wallet: "",
+            amount: 0,
+          })),
     },
   });
 
@@ -127,6 +126,7 @@ Winners.propTypes = {
   ),
   refresh: PropTypes.func.isRequired,
   rewardCurrency: PropTypes.string.isRequired,
+  winnerCount: PropTypes.number.isRequired,
 };
 
 Winners.defaultProps = {

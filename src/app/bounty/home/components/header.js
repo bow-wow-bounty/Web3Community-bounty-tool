@@ -53,7 +53,7 @@ const Header = ({
           </div>
         </div>
       </div>
-      <div className="pr-8">
+      <div className="pr-8 pl-4">
         <Link href={`/bounty/${id}/submission`} noUnderline>
           <Button variant={ButtonVariant.PrimaryBW} className="flex text-lg">
             <div className="mr-3 rounded-sm bg-white p-0.5 text-black">
@@ -78,6 +78,7 @@ Header.propTypes = {
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     deadline: PropTypes.string.isRequired,
+    wallets: PropTypes.arrayOf(PropTypes.string).isRequired,
     totalReward: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
