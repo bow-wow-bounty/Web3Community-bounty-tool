@@ -1,15 +1,8 @@
-import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
-import Api from "../../../../api/instances/core";
 import BountyCard from "./components/bounty-card";
 
-const List = () => {
-  const [bounties, setBounties] = useState([]);
-
-  useEffect(() => {
-    Api.get("/bounty").then(setBounties);
-  }, []);
-
+const List = ({ bounties }) => {
   return (
     <div className="w-full">
       <p className="font-display text-3xl">Recent Bounties</p>
@@ -28,3 +21,9 @@ const List = () => {
 };
 
 export default List;
+
+List.propTypes = {
+  bounties: PropTypes.arrayOf(
+    PropTypes.shape({ id: PropTypes.string.isRequired })
+  ).isRequired,
+};

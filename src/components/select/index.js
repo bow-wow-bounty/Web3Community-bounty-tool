@@ -9,13 +9,19 @@ export const Select = ({
   name,
   label,
   className,
+  labelClassName,
   options,
 }) => {
   const error = pathOr("", [name, "message"])(errors);
 
   return (
     <div>
-      <p className="mb-1.5 block text-xs text-gray-400 transition-all empty:hidden">
+      <p
+        className={classNames(
+          "mb-1.5 block text-xs text-gray-400 transition-all empty:hidden",
+          labelClassName
+        )}
+      >
         {label}
       </p>
       <select
@@ -47,6 +53,7 @@ Select.defaultProps = {
   errors: {},
   label: "",
   className: "",
+  labelClassName: "",
 };
 
 Select.propTypes = {
@@ -56,6 +63,7 @@ Select.propTypes = {
   name: PropTypes.string,
   label: PropTypes.string,
   className: PropTypes.string,
+  labelClassName: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.string.isRequired,
