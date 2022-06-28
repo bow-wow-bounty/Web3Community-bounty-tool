@@ -8,6 +8,7 @@ import { array, date, number, object, string } from "yup";
 import Api from "../../../api/instances/core";
 import Button, { ButtonVariant } from "../../../components/button";
 import Editor from "../../../components/editor";
+import FileUploadInput from "../../../components/file-upload-input";
 import Input from "../../../components/input";
 import Select from "../../../components/select";
 import Step from "../../../components/step";
@@ -75,12 +76,11 @@ const CreateBounty = () => {
       <Header />
       <form onSubmit={onSubmit} className="max-w-xl py-12">
         <Step title="Upload Image">
-          <Input
-            type="text"
+          <FileUploadInput
+            control={control}
             name="image"
             register={register}
             errors={errors}
-            label="Image"
           />
         </Step>
         <Step title="Title">
