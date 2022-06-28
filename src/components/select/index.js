@@ -32,7 +32,7 @@ export const Select = ({
           <option key={option.key}>{option.value}</option>
         ))}
       </select>
-      <p className="mt-2 ml-1 block text-xs text-red-500">
+      <p className="mt-2 ml-1 block text-xs text-red-500 empty:hidden">
         {capitalize(error)}
       </p>
     </div>

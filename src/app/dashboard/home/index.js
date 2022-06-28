@@ -73,7 +73,8 @@ const fields = [
   {
     name: "Total Reward",
     key: "totalReward",
-    value: ({ totalReward }) => `${totalReward} SOL`,
+    value: ({ totalReward, rewardCurrency }) =>
+      `${totalReward} ${rewardCurrency}`,
   },
   {
     name: "Reward Status",

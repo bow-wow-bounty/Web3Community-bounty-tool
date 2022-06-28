@@ -33,29 +33,30 @@ model Winner {
 }
 
 model Bounty {
-  id           String       @id @default(cuid())
-  creator      String
-  image        String
-  title        String
-  category     String
-  type         String
-  wallets      String[]
-  deadline     DateTime
-  description  String
-  ended        Boolean
-  todo         String
-  evaluation   String
-  resources    String
-  distribution String
-  winnerCount  Int
-  totalReward  Int
-  pocName      String
-  pocTwitter   String
-  pocDiscord   String
-  submissions  Submission[]
-  winners      Winner[]
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
+  id             String       @id @default(cuid())
+  creator        String
+  image          String
+  title          String
+  category       String
+  type           String
+  wallets        String[]
+  deadline       DateTime
+  description    String
+  ended          Boolean
+  todo           String
+  evaluation     String
+  resources      String
+  distribution   String
+  winnerCount    Int
+  totalReward    Int
+  rewardCurrency String
+  pocName        String
+  pocTwitter     String
+  pocDiscord     String
+  submissions    Submission[]
+  winners        Winner[]
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
 }
 
 model Submission {

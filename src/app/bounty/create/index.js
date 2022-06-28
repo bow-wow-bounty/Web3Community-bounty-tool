@@ -45,6 +45,7 @@ const CreateBounty = () => {
     resolver: yupResolver(schema),
     defaultValues: {
       wallets: [],
+      rewardCurrency: "SOL",
     },
   });
 
@@ -185,13 +186,26 @@ const CreateBounty = () => {
           />
         </Step>
         <Step title="Total Reward">
-          <Input
-            type="number"
-            name="totalReward"
-            register={register}
-            errors={errors}
-            label="Total Reward (SOL)"
-          />
+          <div className="flex items-center space-x-2">
+            <Input
+              type="number"
+              name="totalReward"
+              register={register}
+              errors={errors}
+              label="Total Reward"
+            />
+            <Select
+              type="text"
+              name="rewardCurrency"
+              register={register}
+              errors={errors}
+              label="&nbsp;"
+              options={[
+                { key: "sol", value: "SOL" },
+                { key: "usdt", value: "USDT" },
+              ]}
+            />
+          </div>
         </Step>
         <Step title="Evaluation criteria">
           <Editor
