@@ -33,6 +33,11 @@ const bountyList = handler(
 
     const bounties = await prisma.bounty.findMany({
       where,
+      orderBy: [
+        {
+          deadline: "desc",
+        },
+      ],
       select: {
         id: true,
         image: true,
