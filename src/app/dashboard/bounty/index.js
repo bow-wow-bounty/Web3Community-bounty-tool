@@ -45,7 +45,11 @@ const BountyDashboard = () => {
             submissions={bounty?.submissions}
             reviewSubmissions={reviewSubmissions}
           />
-          <Winners winners={bounty?.winners} refresh={loadData} />
+          <Winners
+            winners={bounty?.winners}
+            rewardCurrency={bounty?.rewardCurrency}
+            refresh={loadData}
+          />
         </div>
       </div>
     </div>

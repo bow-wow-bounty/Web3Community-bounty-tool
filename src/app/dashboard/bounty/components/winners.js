@@ -21,7 +21,7 @@ const schema = object({
     .required(),
 });
 
-const Winners = ({ winners, refresh }) => {
+const Winners = ({ winners, rewardCurrency, refresh }) => {
   const router = useRouter();
 
   const {
@@ -86,7 +86,7 @@ const Winners = ({ winners, refresh }) => {
                   className="max-w-[9em] rounded-r-none"
                 />
                 <p className="flex items-center justify-center rounded-r bg-black px-3 text-sm text-white">
-                  SOL
+                  {rewardCurrency}
                 </p>
               </div>
             </div>
@@ -126,6 +126,7 @@ Winners.propTypes = {
     })
   ),
   refresh: PropTypes.func.isRequired,
+  rewardCurrency: PropTypes.string.isRequired,
 };
 
 Winners.defaultProps = {
