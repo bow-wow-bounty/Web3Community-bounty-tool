@@ -31,8 +31,10 @@ const BountyCard = ({
           <Image layout="fill" src={image} alt={title} objectFit="cover" />
         </div>
         <div className="flex items-center justify-between border-b p-4">
-          <div>
-            <p className="font-display text-2xl">{title}</p>
+          <div className="flex-1 overflow-hidden">
+            <p className="overflow-hidden text-ellipsis whitespace-nowrap font-display text-2xl">
+              {title}
+            </p>
             <p className="text-xs underline">
               {new Date(deadline).toDateString().split(" ").slice(1).join(" ")}
             </p>
