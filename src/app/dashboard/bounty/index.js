@@ -29,7 +29,7 @@ const BountyDashboard = () => {
       <div className="container mx-auto">
         <Header bounty={bounty} />
         <div className="relative mt-12 flex w-full space-x-8 overflow-hidden">
-          <Submissions />
+          <Submissions submissions={bounty?.submissions} />
           <Winners winners={bounty?.winners} refresh={loadData} />
         </div>
       </div>
