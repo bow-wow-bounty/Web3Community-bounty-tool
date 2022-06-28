@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 import Button from "../../../../components/button";
 
-const Submissions = ({ submissions }) => {
+const Submissions = ({ submissions, reviewSubmissions }) => {
   return (
     <div className="relative w-1/2 flex-1">
       <p className="font-display text-3xl">Submissions Received</p>
@@ -46,7 +46,12 @@ const Submissions = ({ submissions }) => {
                             </Button>
                             <div className="flex flex-1 items-center whitespace-nowrap px-16">
                               <p className="mr-3 text-xs">Mark as Reviewed</p>
-                              <Button className="border-0 !p-0">
+                              <Button
+                                className="border-0 !p-0"
+                                onClick={() =>
+                                  reviewSubmissions(wallet, !reviewed)
+                                }
+                              >
                                 {!reviewed ? (
                                   <div className="rounded-sm border border-gray-400 bg-white text-transparent">
                                     <CheckIcon className="h-4 w-4" />
@@ -186,6 +191,7 @@ Submissions.propTypes = {
       wallet: PropTypes.string.isRequired,
     })
   ),
+  reviewSubmissions: PropTypes.func.isRequired,
 };
 
 Submissions.defaultProps = {
