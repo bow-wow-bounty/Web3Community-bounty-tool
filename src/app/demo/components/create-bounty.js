@@ -37,7 +37,7 @@ const CreateBounty = () => {
       title: "title",
       image: "image",
       category: "category",
-      type: "closed",
+      type: "Closed",
       wallets: ["wallet1", "wallet2"],
       deadline: null,
       description: "description",

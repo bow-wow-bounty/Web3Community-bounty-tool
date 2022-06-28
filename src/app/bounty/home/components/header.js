@@ -6,10 +6,12 @@ import {
 } from "@heroicons/react/solid";
 import Image from "next/image";
 import PropTypes from "prop-types";
+import { useMemo } from "react";
 import { stripHtml } from "string-strip-html";
 
 import Button, { ButtonVariant } from "../../../../components/button";
 import Link from "../../../../components/link";
+import AuthStore from "../../../../stores/auth-store";
 
 const Header = ({
   bounty: {
@@ -21,9 +23,18 @@ const Header = ({
     description,
     category,
     ended,
+    wallets,
     type,
   },
 }) => {
+  const { user } = AuthStore.useContainer();
+
+  const allowSubmission = useMemo(
+    () =>
+      type === "Open" || (type === "Closed" && wallets.includes(user?.wallet)),
+    [type, user?.wallet, wallets]
+  );
+
   return (
     <div className="relative flex items-center rounded-lg bg-theme-orange p-8 shadow">
       <div className="relative mr-4 aspect-[16/9] w-1/4 overflow-hidden rounded-md">
@@ -54,16 +65,19 @@ const Header = ({
         </div>
       </div>
       <div className="pr-8 pl-4">
-        <Link href={`/bounty/${id}/submission`} noUnderline>
-          <Button variant={ButtonVariant.PrimaryBW} className="flex text-lg">
-            <div className="mr-3 rounded-sm bg-white p-0.5 text-black">
-              <PlusIcon className="h-3 w-3" />
-            </div>
-            Add A Submission
-          </Button>
-        </Link>
+        {allowSubmission && (
+          <Link href={`/bounty/${id}/submission`} noUnderline>
+            <Button variant={ButtonVariant.PrimaryBW} className="flex text-lg">
+              <div className="mr-3 rounded-sm bg-white p-0.5 text-black">
+                <PlusIcon className="h-3 w-3" />
+              </div>
+              Add A Submission
+            </Button>
+          </Link>
+        )}
+
         <div className="absolute bottom-0 right-0 m-6">
-          {type === "closed" && <LockClosedIcon className="h-6 w-6" />}
+          {type === "Closed" && <LockClosedIcon className="h-6 w-6" />}
         </div>
       </div>
     </div>

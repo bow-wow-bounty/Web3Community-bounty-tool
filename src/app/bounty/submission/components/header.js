@@ -47,7 +47,7 @@ const Header = ({
       </div>
       <div className="pr-8">
         <div className="absolute bottom-0 right-0 m-6">
-          {type === "closed" && <LockClosedIcon className="h-6 w-6" />}
+          {type === "Closed" && <LockClosedIcon className="h-6 w-6" />}
         </div>
       </div>
     </div>

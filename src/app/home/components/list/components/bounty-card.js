@@ -53,7 +53,7 @@ const BountyCard = ({
             </p>
           </div>
           <div>
-            {type === "closed" && <LockClosedIcon className="h-6 w-6" />}
+            {type === "Closed" && <LockClosedIcon className="h-6 w-6" />}
           </div>
         </div>
       </div>
