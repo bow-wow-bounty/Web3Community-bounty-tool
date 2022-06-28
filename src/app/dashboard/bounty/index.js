@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 
 import Api from "../../../api/instances/core";
+import Loading from "../../../components/loading";
 import Header from "./components/header";
 import Submissions from "./components/submissions";
 import Winners from "./components/winners";
@@ -38,7 +39,9 @@ const BountyDashboard = () => {
 
   return (
     <div className="min-h-full-page w-full overflow-auto bg-theme-light-gray py-12">
-      {!bounty ? null : (
+      {!bounty ? (
+        <Loading />
+      ) : (
         <div className="container mx-auto">
           <Header bounty={bounty} />
           <div className="relative mt-12 flex w-full space-x-8 overflow-hidden">

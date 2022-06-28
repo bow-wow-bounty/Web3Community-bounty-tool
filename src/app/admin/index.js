@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 
 import Api from "../../api/instances/core";
+import Loading from "../../components/loading";
 import Roles from "./components/roles";
 
 const Admin = () => {
@@ -18,9 +19,9 @@ const Admin = () => {
     loadData();
   }, [loadData]);
 
-  return !roles ? null : (
+  return (
     <div className="min-h-full-page container mx-auto space-y-8 py-8">
-      <Roles roles={roles} refresh={loadData} />
+      {!roles ? <Loading /> : <Roles roles={roles} refresh={loadData} />}
     </div>
   );
 };

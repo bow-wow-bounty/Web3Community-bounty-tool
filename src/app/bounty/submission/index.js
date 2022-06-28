@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import Api from "../../../api/instances/core";
+import Loading from "../../../components/loading";
 import Form from "./components/form";
 import Header from "./components/header";
 
@@ -19,7 +20,11 @@ const Submission = () => {
     }
   }, [id]);
 
-  return !bounty ? null : (
+  return !bounty ? (
+    <div className="min-h-full-page w-full overflow-auto bg-theme-light-gray py-12">
+      <Loading />
+    </div>
+  ) : (
     <div className="min-h-full-page w-full overflow-auto bg-theme-light-gray py-12">
       <div className="container mx-auto">
         <Header bounty={bounty} />

@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import Api from "../../../api/instances/core";
+import Loading from "../../../components/loading";
 import Contents from "./components/contents";
 import Header from "./components/header";
 
@@ -21,7 +22,9 @@ const Bounty = () => {
 
   return (
     <div className="min-h-full-page container mx-auto py-12">
-      {bounty && (
+      {!bounty ? (
+        <Loading />
+      ) : (
         <>
           <Header bounty={bounty} />
           <Contents bounty={bounty} />

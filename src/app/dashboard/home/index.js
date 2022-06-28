@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 import Api from "../../../api/instances/core";
 import logo from "../../../assets/logo-small.svg";
+import Loading from "../../../components/loading";
 
 const fields = [
   {
@@ -85,7 +86,7 @@ const fields = [
 
 const Dashboard = () => {
   const router = useRouter();
-  const [bounties, setBounties] = useState([]);
+  const [bounties, setBounties] = useState();
 
   useEffect(() => {
     Api.get("/bounty/owned").then((list) => {
@@ -93,7 +94,11 @@ const Dashboard = () => {
     });
   }, []);
 
-  return (
+  return !bounties ? (
+    <div className="min-h-full-page w-full overflow-auto bg-theme-light-gray py-12">
+      <Loading />
+    </div>
+  ) : (
     <div className="min-h-full-page w-full overflow-auto bg-theme-light-gray py-12">
       <div className="container relative mx-auto">
         <div className="relative flex w-full items-center justify-between rounded-t-md bg-theme-orange py-3 px-4">
