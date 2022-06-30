@@ -3,7 +3,9 @@ import {
   CheckCircleIcon,
   DesktopComputerIcon,
   PlusIcon,
+  XCircleIcon,
 } from "@heroicons/react/solid";
+import classNames from "classnames";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import { useMemo } from "react";
@@ -22,17 +24,20 @@ const Header = ({
     totalReward,
     description,
     category,
-    ended,
     wallets,
     type,
   },
 }) => {
   const { user } = AuthStore.useContainer();
 
+  const ended = useMemo(() => new Date() >= new Date(deadline), [deadline]);
+
   const allowSubmission = useMemo(
     () =>
-      type === "Open" || (type === "Closed" && wallets.includes(user?.wallet)),
-    [type, user?.wallet, wallets]
+      !ended &&
+      (type === "Open" ||
+        (type === "Closed" && wallets.includes(user?.wallet))),
+    [ended, type, user?.wallet, wallets]
   );
 
   return (
@@ -54,8 +59,20 @@ const Header = ({
               <DesktopComputerIcon className="mr-1 h-4 w-4" />
               {category}
             </p>
-            <p className="inline-flex items-center rounded-full bg-white px-3 py-1.5 text-xs font-medium">
-              <CheckCircleIcon className="mr-1 h-4 w-4" />
+            <p
+              className={classNames(
+                "inline-flex items-center rounded-full bg-white px-3 py-1 text-sm font-medium",
+                {
+                  "text-theme-dark-green": !ended,
+                  "text-theme-red": ended,
+                }
+              )}
+            >
+              {!ended ? (
+                <CheckCircleIcon className="mr-1 h-4 w-4" />
+              ) : (
+                <XCircleIcon className="mr-1 h-4 w-4" />
+              )}
               {!ended ? "Active" : "Expired"}
             </p>
             <p className="rounded-full border border-black bg-black py-1.5 px-4 text-xs font-bold text-white">

@@ -2,20 +2,14 @@ import { LockClosedIcon } from "@heroicons/react/outline";
 import { CheckCircleIcon, DesktopComputerIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 import PropTypes from "prop-types";
+import { useMemo } from "react";
 import { stripHtml } from "string-strip-html";
 
 const Header = ({
-  bounty: {
-    image,
-    title,
-    deadline,
-    totalReward,
-    description,
-    category,
-    ended,
-    type,
-  },
+  bounty: { image, title, deadline, totalReward, description, category, type },
 }) => {
+  const ended = useMemo(() => new Date() >= new Date(deadline), [deadline]);
+
   return (
     <div className="relative flex items-center rounded-lg bg-theme-orange p-8 shadow">
       <div className="relative mr-4 aspect-[16/9] w-1/4 overflow-hidden rounded-md">

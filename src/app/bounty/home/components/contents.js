@@ -17,6 +17,7 @@ const Contents = ({
     todo,
     wallets,
     type,
+    deadline,
     distribution,
     evaluation,
     resources,
@@ -24,10 +25,14 @@ const Contents = ({
 }) => {
   const { user } = AuthStore.useContainer();
 
+  const ended = useMemo(() => new Date() >= new Date(deadline), [deadline]);
+
   const allowSubmission = useMemo(
     () =>
-      type === "Open" || (type === "Closed" && wallets.includes(user?.wallet)),
-    [type, user?.wallet, wallets]
+      !ended &&
+      (type === "Open" ||
+        (type === "Closed" && wallets.includes(user?.wallet))),
+    [ended, type, user?.wallet, wallets]
   );
 
   return (
@@ -93,6 +98,7 @@ Contents.propTypes = {
     id: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     todo: PropTypes.string.isRequired,
+    deadline: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired,
     wallets: PropTypes.arrayOf(PropTypes.string).isRequired,
     distribution: PropTypes.string.isRequired,
