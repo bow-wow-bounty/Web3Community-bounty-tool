@@ -21,6 +21,7 @@ const Header = ({
     image,
     title,
     deadline,
+    rewardCurrency,
     totalReward,
     description,
     category,
@@ -76,7 +77,9 @@ const Header = ({
               {!ended ? "Active" : "Expired"}
             </p>
             <p className="rounded-full border border-black bg-black py-1.5 px-4 text-xs font-bold text-white">
-              <span className="block translate-y-[1px]">${totalReward}</span>
+              <span className="block translate-y-[1px]">
+                {rewardCurrency} {totalReward}
+              </span>
             </p>
           </div>
         </div>
@@ -110,6 +113,7 @@ Header.propTypes = {
     title: PropTypes.string.isRequired,
     deadline: PropTypes.string.isRequired,
     wallets: PropTypes.arrayOf(PropTypes.string).isRequired,
+    rewardCurrency: PropTypes.string.isRequired,
     totalReward: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,
