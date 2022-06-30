@@ -20,6 +20,7 @@ const BountyCard = ({
   category,
   type,
   deadline,
+  rewardCurrency,
   totalReward,
 }) => {
   const ended = useMemo(() => new Date() >= new Date(deadline), [deadline]);
@@ -41,7 +42,9 @@ const BountyCard = ({
           </div>
           <div>
             <p className="rounded-full border border-black py-1 px-4 text-sm font-bold">
-              <span className="block translate-y-[1px]">${totalReward}</span>
+              <span className="block translate-y-[1px]">
+                {totalReward} {rewardCurrency}
+              </span>
             </p>
           </div>
         </div>
@@ -92,5 +95,6 @@ BountyCard.propTypes = {
   category: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   deadline: PropTypes.string.isRequired,
+  rewardCurrency: PropTypes.string.isRequired,
   totalReward: PropTypes.number.isRequired,
 };

@@ -46,6 +46,7 @@ const bountyList = handler(
         category: true,
         type: true,
         deadline: true,
+        rewardCurrency: true,
         totalReward: true,
       },
     });
