@@ -18,8 +18,8 @@ const schema = object({
   files: array().of(string()).required(),
   discord: string().required(),
   twitter: string().required(),
-  telegram: string().required(),
-  email: string().email().required(),
+  telegram: string(),
+  email: string().email(),
   description: string().required(),
 });
 
