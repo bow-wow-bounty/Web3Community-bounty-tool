@@ -1,8 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import axios from "axios";
 import jsonwebtoken from "jsonwebtoken";
 import { applySpec, pathOr, propOr } from "ramda";
 
 import { AUTH_EXPIRY_DURATION, AUTH_SECRET } from "../../../config/auth";
+import mintList from "../../../config/mint-list";
 import { verifyAuthResponse } from "../../utils/auth";
 import handler from "../../utils/handler";
 
@@ -23,6 +25,32 @@ const authVerify = handler(
           wallet: publicKey,
         },
       });
+
+      const nfts = await axios
+        .get(
+          `https://solana-gateway.moralis.io/account/mainnet/${publicKey}/nft`,
+          {
+            headers: {
+              "X-API-Key": process.env.SOLANA_GATEWAY_MORALIS_KEY,
+            },
+          }
+        )
+        .then(propOr([], "data"));
+
+      const containsNft = Boolean(
+        nfts.find((nft) => mintList.includes(nft.mint))
+      );
+
+      if (
+        !containsNft &&
+        !["ADMIN", "SUPER_ADMIN"].find((role) =>
+          rolesEntry.roles.includes(role)
+        )
+      ) {
+        return res
+          .status(403)
+          .json({ message: "This wallet does not own NFT" });
+      }
 
       const token = jsonwebtoken.sign(
         createToken({
