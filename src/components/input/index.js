@@ -21,6 +21,7 @@ export const Input = ({
         </p>
         <input
           {...props}
+          onWheel={(e) => e.target?.blur()}
           className={classNames(
             `w-full rounded border border-black p-2 font-light focus:outline-none focus:ring-0`,
             {
