@@ -20,7 +20,7 @@ const schema = object({
   twitter: string().required(),
   telegram: string(),
   email: string().email(),
-  description: string().required(),
+  description: string(),
 });
 
 const Form = () => {
