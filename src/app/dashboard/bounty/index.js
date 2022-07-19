@@ -44,7 +44,7 @@ const BountyDashboard = () => {
       ) : (
         <div className="container mx-auto">
           <Header bounty={bounty} />
-          <div className="relative mt-12 flex w-full space-x-8 overflow-hidden">
+          <div className="relative mt-12 flex w-full flex-col overflow-hidden sm:flex-row sm:space-x-8">
             <Submissions
               submissions={bounty?.submissions}
               reviewSubmissions={reviewSubmissions}

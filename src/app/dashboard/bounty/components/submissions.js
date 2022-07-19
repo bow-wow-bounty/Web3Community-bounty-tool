@@ -3,6 +3,8 @@ import { DuplicateIcon } from "@heroicons/react/outline";
 import { CheckIcon, ChevronDownIcon, MailIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
 import PropTypes from "prop-types";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import ReactTooltip from "react-tooltip";
 
 import Button from "../../../../components/button";
 
@@ -73,37 +75,32 @@ const Submissions = ({ submissions, reviewSubmissions }) => {
                                 key: "discord",
                                 icon: <MailIcon className="mr-1 h-3 w-3" />,
                                 value: discord,
-                                url: discord,
                               },
                               {
                                 key: "twitter",
                                 icon: <MailIcon className="mr-1 h-3 w-3" />,
                                 value: twitter,
-                                url: twitter,
                               },
                               {
                                 key: "email",
                                 icon: <MailIcon className="mr-1 h-3 w-3" />,
                                 value: email,
-                                url: email,
                               },
                               {
                                 key: "telegram",
                                 icon: <MailIcon className="mr-1 h-3 w-3" />,
                                 value: telegram,
-                                url: telegram,
                               },
-                            ].map(({ key, icon, url, value }) => (
-                              <a
-                                key={key}
-                                className="flex items-center"
-                                href={url}
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                {icon}
-                                <p className="text-xs underline">{value}</p>
-                              </a>
+                            ].map(({ key, icon, value }) => (
+                              <CopyToClipboard text={value} key={key}>
+                                <div
+                                  className="flex items-center"
+                                  data-tip={value}
+                                >
+                                  {icon}
+                                  <p className="text-xs underline">{value}</p>
+                                </div>
+                              </CopyToClipboard>
                             ))}
                           </div>
                         </div>
@@ -172,6 +169,7 @@ const Submissions = ({ submissions, reviewSubmissions }) => {
           )}
         </dl>
       </div>
+      <ReactTooltip />
     </div>
   );
 };
