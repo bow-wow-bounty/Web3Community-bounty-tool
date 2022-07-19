@@ -1,4 +1,3 @@
-import { LockClosedIcon, LockOpenIcon } from "@heroicons/react/outline";
 import { CheckCircleIcon, CogIcon, XCircleIcon } from "@heroicons/react/solid";
 import classNames from "classnames";
 import Image from "next/image";
@@ -53,12 +52,7 @@ const fields = [
   {
     name: "Type",
     key: "type",
-    value: ({ type }) =>
-      type === "Closed" ? (
-        <LockClosedIcon className="mx-auto h-4 w-4" />
-      ) : (
-        <LockOpenIcon className="mx-auto h-4 w-4" />
-      ),
+    value: ({ type }) => <p>{type}</p>,
   },
   {
     name: "Point of Contact",
