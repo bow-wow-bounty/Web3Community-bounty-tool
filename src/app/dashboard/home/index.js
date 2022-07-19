@@ -94,69 +94,76 @@ const Dashboard = () => {
     </div>
   ) : (
     <div className="min-h-full-page w-full overflow-auto bg-theme-light-gray py-12">
-      <div className="container relative mx-auto">
-        <div className="relative flex w-full items-center justify-between rounded-t-md bg-theme-orange py-3 px-4">
-          <p className="font-display text-2xl">Dashboard</p>
-          <div className="h-full">
-            <div className="relative aspect-[5/3] w-12">
-              <Image src={logo} layout="fill" alt="Logo" objectFit="contain" />
+      <div className="container relative mx-auto px-2">
+        <div className="relative w-full overflow-auto">
+          <div className="sticky left-0 top-0 flex w-full items-center justify-between rounded-t-md bg-theme-orange py-3 px-4">
+            <p className="font-display text-2xl">Dashboard</p>
+            <div className="h-full">
+              <div className="relative aspect-[5/3] w-12">
+                <Image
+                  src={logo}
+                  layout="fill"
+                  alt="Logo"
+                  objectFit="contain"
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <table className="w-full border-hidden text-xs">
-          <thead className="">
-            <tr>
-              {fields.map((field, index) => (
-                <th
-                  key={field.key}
-                  className={classNames(
-                    "whitespace-nowrap  bg-black py-3.5 px-3 text-center font-normal text-white",
-                    {
-                      "rounded-bl-md": !index,
-                      "rounded-br-md": fields.length - 1 === index,
-                    }
-                  )}
-                >
-                  {field.name}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {bounties.map((bounty, index) => (
-              <tr
-                key={bounty.id}
-                style={{ filter: "drop-shadow(0 0 2px rgba(0,0,0,0.15))" }}
-                onClick={() => router.push(`/dashboard/bounty/${bounty.id}`)}
-                className="cursor-pointer"
-              >
-                <td className={classNames("py-1 px-0", { "pt-4": !index })}>
-                  <div className="flex h-full min-h-[40px] w-full items-center justify-center whitespace-nowrap rounded-tl rounded-bl bg-white px-3 text-center">
-                    {index + 1}
-                  </div>
-                </td>
-                {fields.slice(1).map((field, fieldIndex) => (
-                  <td
+          <table className="w-full border-hidden text-xs">
+            <thead className="">
+              <tr>
+                {fields.map((field, index) => (
+                  <th
                     key={field.key}
-                    className={classNames("py-1 px-0", { "pt-4": !index })}
+                    className={classNames(
+                      "whitespace-nowrap  bg-black py-3.5 px-3 text-center font-normal text-white",
+                      {
+                        "rounded-bl-md": !index,
+                        "rounded-br-md": fields.length - 1 === index,
+                      }
+                    )}
                   >
-                    <div
-                      className={classNames(
-                        "flex h-full min-h-[40px] w-full items-center justify-center whitespace-nowrap bg-white px-3 text-center",
-                        {
-                          "rounded-tr rounded-br":
-                            fieldIndex === fields.length - 2,
-                        }
-                      )}
-                    >
-                      {field.value ? field.value(bounty) : bounty[field.key]}
-                    </div>
-                  </td>
+                    {field.name}
+                  </th>
                 ))}
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {bounties.map((bounty, index) => (
+                <tr
+                  key={bounty.id}
+                  style={{ filter: "drop-shadow(0 0 2px rgba(0,0,0,0.15))" }}
+                  onClick={() => router.push(`/dashboard/bounty/${bounty.id}`)}
+                  className="cursor-pointer"
+                >
+                  <td className={classNames("py-1 px-0", { "pt-4": !index })}>
+                    <div className="flex h-full min-h-[40px] w-full items-center justify-center whitespace-nowrap rounded-tl rounded-bl bg-white px-3 text-center">
+                      {index + 1}
+                    </div>
+                  </td>
+                  {fields.slice(1).map((field, fieldIndex) => (
+                    <td
+                      key={field.key}
+                      className={classNames("py-1 px-0", { "pt-4": !index })}
+                    >
+                      <div
+                        className={classNames(
+                          "flex h-full min-h-[40px] w-full items-center justify-center whitespace-nowrap bg-white px-3 text-center",
+                          {
+                            "rounded-tr rounded-br":
+                              fieldIndex === fields.length - 2,
+                          }
+                        )}
+                      >
+                        {field.value ? field.value(bounty) : bounty[field.key]}
+                      </div>
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
