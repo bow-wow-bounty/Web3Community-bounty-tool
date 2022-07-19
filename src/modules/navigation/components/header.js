@@ -60,7 +60,7 @@ const Header = () => {
             </Link>
           )}
 
-          {isSuperAdmin && (
+          {(isSuperAdmin || isAdmin) && (
             <Link href="/admin">
               <Button variant={ButtonVariant.Secondary} disabled={!isLoggedIn}>
                 Admin
