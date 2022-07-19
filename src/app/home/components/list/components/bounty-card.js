@@ -5,6 +5,7 @@ import {
   XCircleIcon,
 } from "@heroicons/react/solid";
 import classNames from "classnames";
+import dayjs from "dayjs";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import { useMemo } from "react";
@@ -37,7 +38,7 @@ const BountyCard = ({
               {title}
             </p>
             <p className="text-xs underline">
-              {new Date(deadline).toDateString().split(" ").slice(1).join(" ")}
+              {dayjs(new Date(deadline)).format(`MMM DD YYYY hh:mm A`)}
             </p>
           </div>
           <div>

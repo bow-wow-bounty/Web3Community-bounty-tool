@@ -1,5 +1,6 @@
 import { LockClosedIcon } from "@heroicons/react/outline";
 import { CheckCircleIcon, DesktopComputerIcon } from "@heroicons/react/solid";
+import dayjs from "dayjs";
 import Image from "next/image";
 import PropTypes from "prop-types";
 import { stripHtml } from "string-strip-html";
@@ -23,7 +24,10 @@ const Header = ({
       </div>
       <div className="flex-1">
         <div className="py-4">
-          <p className="text-xs">Deadline: {new Date(deadline).toString()}</p>
+          <p className="text-xs">
+            Deadline:
+            {dayjs(new Date(deadline)).format(`MMM DD YYYY hh:mm A`)}
+          </p>
           <p className="font-display text-2xl">{title}</p>
           <p className="text-sm line-clamp-2">
             {stripHtml(description).result}
