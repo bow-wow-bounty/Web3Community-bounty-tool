@@ -1,4 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
+import { AnchorProvider } from "@project-serum/anchor";
+import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import { clusterApiUrl, Connection } from "@solana/web3.js";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import { useMemo } from "react";
@@ -8,6 +11,7 @@ import { array, number, object, string } from "yup";
 import Api from "../../../../api/instances/core";
 import Button, { ButtonVariant } from "../../../../components/button";
 import Input from "../../../../components/input";
+import AuthStore from "../../../../stores/auth-store";
 
 const schema = object({
   winners: array()
@@ -21,8 +25,30 @@ const schema = object({
     .required(),
 });
 
+const network = WalletAdapterNetwork.Mainnet;
+
+const connection = new Connection(clusterApiUrl(network), "confirmed");
+
+const processedConnection = new Connection(clusterApiUrl(network), "processed");
+
+const getProvider = (wallet, commitment = "confirmed") => {
+  if (commitment === "processed") {
+    return new AnchorProvider(processedConnection, wallet, {
+      skipPreflight: true,
+    });
+  }
+
+  return new AnchorProvider(connection, wallet, { skipPreflight: true });
+};
+
 const Winners = ({ winners, winnerCount, rewardCurrency, refresh }) => {
   const router = useRouter();
+
+  const { user } = AuthStore.useContainer();
+
+  const provider = getProvider(user.wallet);
+
+  console.log({ provider });
 
   const {
     control,
