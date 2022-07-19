@@ -28,14 +28,14 @@ const Header = () => {
   return (
     <div className="sticky top-0 z-10 flex min-h-[72px] w-full bg-white shadow-md">
       <div className="container mx-auto flex items-center">
-        <div className="mr-2 ml-2 h-full md:ml-0">
+        <div className="mr-2 ml-2 h-full lg:ml-0">
           <Link href="/">
-            <div className="relative h-full w-44 md:w-96">
+            <div className="relative h-full w-44 lg:w-96">
               <Image src={logo} layout="fill" alt="Logo" objectFit="contain" />
             </div>
           </Link>
         </div>
-        <div className="mr-2 flex flex-1 justify-end space-x-1 md:mr-0 md:space-x-4">
+        <div className="mr-2 flex flex-1 justify-end space-x-1 lg:mr-0 lg:space-x-4">
           {(isCreator || isAdmin) && (
             <Link href="/dashboard">
               <Button
@@ -46,8 +46,8 @@ const Header = () => {
                 }
                 disabled={!isLoggedIn}
               >
-                <ViewGridIcon className="h-4 w-4 translate-y-[1px] md:mr-1 md:h-5 md:w-5" />
-                <span className="hidden md:inline">Dashboard</span>
+                <ViewGridIcon className="h-4 w-4 translate-y-[1px] lg:mr-1 lg:h-5 lg:w-5" />
+                <span className="hidden lg:inline">Dashboard</span>
               </Button>
             </Link>
           )}
@@ -55,8 +55,8 @@ const Header = () => {
           {isCreator && (
             <Link href="/bounty/create">
               <Button variant={ButtonVariant.Secondary} disabled={!isLoggedIn}>
-                <PlusCircleIcon className="h-4 w-4 translate-y-[1px] md:mr-1 md:h-5 md:w-5" />
-                <span className="hidden md:inline">Create Bounty</span>
+                <PlusCircleIcon className="h-4 w-4 translate-y-[1px] lg:mr-1 lg:h-5 lg:w-5" />
+                <span className="hidden lg:inline">Create Bounty</span>
               </Button>
             </Link>
           )}
@@ -66,7 +66,7 @@ const Header = () => {
               <Button
                 variant={ButtonVariant.Secondary}
                 disabled={!isLoggedIn}
-                className="hidden md:inline"
+                className="hidden lg:inline"
               >
                 Admin
               </Button>
@@ -78,8 +78,8 @@ const Header = () => {
             onClick={() => (!isLoggedIn ? login() : logout())}
             disabled={isProcessing}
           >
-            <LogoutIcon className="h-4 w-4 translate-y-[1px] md:mr-1 md:hidden md:h-5 md:w-5" />
-            <span className="hidden md:inline">
+            <LogoutIcon className="h-4 w-4 translate-y-[1px] lg:mr-1 lg:hidden lg:h-5 lg:w-5" />
+            <span className="hidden lg:inline">
               {isProcessing
                 ? "Processing..."
                 : !isLoggedIn
