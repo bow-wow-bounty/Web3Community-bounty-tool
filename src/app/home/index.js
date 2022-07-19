@@ -9,6 +9,7 @@ const Home = () => {
   const [query, setQuery] = useState("");
 
   useEffect(() => {
+    setBounties([]);
     Api.get(`/bounty?${query}`).then(setBounties);
   }, [query]);
 
