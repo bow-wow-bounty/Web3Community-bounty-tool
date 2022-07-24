@@ -57,6 +57,9 @@ const fields = [
   {
     name: "Point of Contact",
     key: "pocName",
+    value: ({ pocName }) => (
+      <p className="max-w-[15em] overflow-hidden text-ellipsis">{pocName}</p>
+    ),
   },
   {
     name: "Creator",
@@ -70,6 +73,13 @@ const fields = [
     key: "totalReward",
     value: ({ totalReward, rewardCurrency }) =>
       `${totalReward} ${rewardCurrency}`,
+  },
+  {
+    name: "Submissions",
+    key: "submissions",
+    value: ({ _count: { submissions } }) => {
+      return String(submissions);
+    },
   },
   {
     name: "Reward Status",

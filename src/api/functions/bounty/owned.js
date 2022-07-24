@@ -8,11 +8,14 @@ const bountyOwnedList = handler(
   async (req, res) => {
     const bounties = await prisma.bounty.findMany(
       req.user.roles.includes("ADMIN")
-        ? {}
+        ? {
+            include: { _count: { select: { submissions: true } } },
+          }
         : {
             where: {
               creator: req.user.wallet,
             },
+            include: { _count: { select: { submissions: true } } },
           }
     );
 
