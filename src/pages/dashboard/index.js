@@ -1,3 +1,5 @@
-import Dashboard from "../../app/dashboard/home";
+import noSsr from "../../utils/no-ssr";
 
-export default Dashboard;
+const DashboardWithoutSSR = noSsr(() => import("../../app/dashboard/home"));
+
+export default DashboardWithoutSSR;

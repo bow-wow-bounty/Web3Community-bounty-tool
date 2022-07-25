@@ -1,100 +1,36 @@
-import { CheckCircleIcon, CogIcon, XCircleIcon } from "@heroicons/react/solid";
+/* eslint-disable react/jsx-key */
 import classNames from "classnames";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useSortBy, useTable } from "react-table";
 
 import Api from "../../../api/instances/core";
 import logo from "../../../assets/logo-small.svg";
 import Loading from "../../../components/loading";
+import fields from "../../../config/dashboard-bounty-table-fields";
 
-const fields = [
-  {
-    name: "#",
-    key: "id",
-  },
-  {
-    name: "Title",
-    key: "title",
-  },
-  {
-    name: "Status",
-    key: "status",
-    value: ({ deadline }) =>
-      new Date(deadline).getTime() > Date.now() ? (
-        <p className="inline-flex items-center rounded bg-theme-green/10 px-2 py-1 text-xs font-medium text-theme-dark-green">
-          <CheckCircleIcon className="mr-1 h-2 w-2" />
-          Active
-        </p>
-      ) : (
-        <p className="inline-flex items-center rounded bg-theme-red/10 px-2 py-1 text-xs font-medium text-theme-red">
-          <XCircleIcon className="mr-1 h-2 w-2" />
-          Expired
-        </p>
-      ),
-  },
-  {
-    name: "Deadline",
-    key: "deadline",
-    value: ({ deadline }) =>
-      new Date(deadline).toDateString().split(" ").slice(1).join(" "),
-  },
-  {
-    name: "Category",
-    key: "category",
-    value: ({ category }) => (
-      <p className="inline-flex items-center rounded bg-theme-dark-orange/10 px-2 py-1 text-xs font-medium text-theme-dark-orange">
-        <CogIcon className="mr-1 h-2 w-2" />
-        {category}
-      </p>
-    ),
-  },
-  {
-    name: "Type",
-    key: "type",
-    value: ({ type }) => <p>{type}</p>,
-  },
-  {
-    name: "Point of Contact",
-    key: "pocName",
-    value: ({ pocName }) => (
-      <p className="max-w-[15em] overflow-hidden text-ellipsis">{pocName}</p>
-    ),
-  },
-  {
-    name: "Creator",
-    key: "creator",
-    value: ({ creator }) => (
-      <p className="max-w-[10em] overflow-hidden text-ellipsis">{creator}</p>
-    ),
-  },
-  {
-    name: "Total Reward",
-    key: "totalReward",
-    value: ({ totalReward, rewardCurrency }) =>
-      `${totalReward} ${rewardCurrency}`,
-  },
-  {
-    name: "Submissions",
-    key: "submissions",
-    value: ({ _count: { submissions } }) => {
-      return String(submissions);
-    },
-  },
-  {
-    name: "Reward Status",
-    key: "rewardStatus",
-    value: ({ winners }) => (winners?.length ? "Txn Initiated" : "Pending"),
-  },
-];
+const columns = fields.map((field) => ({
+  Header: field.name,
+  accessor: field.key,
+}));
 
 const Dashboard = () => {
   const router = useRouter();
-  const [bounties, setBounties] = useState();
+  const [bounties, setBounties] = useState([]);
+
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
+    useTable(
+      {
+        columns,
+        data: bounties,
+      },
+      useSortBy
+    );
 
   useEffect(() => {
     Api.get("/bounty/owned").then((list) => {
-      setBounties(list);
+      setBounties(list.map((item, index) => ({ ...item, index })));
     });
   }, []);
 
@@ -119,58 +55,75 @@ const Dashboard = () => {
               </div>
             </div>
           </div>
-          <table className="w-full border-hidden text-xs">
+          <table className="w-full border-hidden text-xs" {...getTableProps()}>
             <thead className="">
-              <tr>
-                {fields.map((field, index) => (
-                  <th
-                    key={field.key}
-                    className={classNames(
-                      "whitespace-nowrap  bg-black py-3.5 px-3 text-center font-normal text-white",
-                      {
-                        "rounded-bl-md": !index,
-                        "rounded-br-md": fields.length - 1 === index,
-                      }
-                    )}
-                  >
-                    {field.name}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {bounties.map((bounty, index) => (
-                <tr
-                  key={bounty.id}
-                  style={{ filter: "drop-shadow(0 0 2px rgba(0,0,0,0.15))" }}
-                  onClick={() => router.push(`/dashboard/bounty/${bounty.id}`)}
-                  className="cursor-pointer"
-                >
-                  <td className={classNames("py-1 px-0", { "pt-4": !index })}>
-                    <div className="flex h-full min-h-[40px] w-full items-center justify-center whitespace-nowrap rounded-tl rounded-bl bg-white px-3 text-center">
-                      {index + 1}
-                    </div>
-                  </td>
-                  {fields.slice(1).map((field, fieldIndex) => (
-                    <td
-                      key={field.key}
-                      className={classNames("py-1 px-0", { "pt-4": !index })}
+              {headerGroups.map((headerGroup) => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column, index) => (
+                    <th
+                      className={classNames(
+                        "whitespace-nowrap  bg-black py-3.5 px-3 text-center font-normal text-white",
+                        {
+                          "rounded-bl-md": !index,
+                          "rounded-br-md": fields.length - 1 === index,
+                        }
+                      )}
+                      {...column.getHeaderProps(column.getSortByToggleProps())}
                     >
-                      <div
-                        className={classNames(
-                          "flex h-full min-h-[40px] w-full items-center justify-center whitespace-nowrap bg-white px-3 text-center",
-                          {
-                            "rounded-tr rounded-br":
-                              fieldIndex === fields.length - 2,
-                          }
-                        )}
-                      >
-                        {field.value ? field.value(bounty) : bounty[field.key]}
-                      </div>
-                    </td>
+                      {column.render("Header")}
+                      {/* Add a sort direction indicator */}
+                      <span>
+                        {column.isSorted
+                          ? column.isSortedDesc
+                            ? " 🔽"
+                            : " 🔼"
+                          : ""}
+                      </span>
+                    </th>
                   ))}
                 </tr>
               ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              {rows.map((row, i) => {
+                prepareRow(row);
+                return (
+                  <tr
+                    {...row.getRowProps()}
+                    style={{ filter: "drop-shadow(0 0 2px rgba(0,0,0,0.15))" }}
+                    className="cursor-pointer"
+                    onClick={() =>
+                      router.push(`/dashboard/bounty/${row.original.id}`)
+                    }
+                  >
+                    {row.cells.map((cell, fieldIndex) => {
+                      const bounty = cell.row.original;
+                      return (
+                        <td
+                          {...cell.getCellProps()}
+                          className={classNames("py-1 px-0", {
+                            "pt-4": !i,
+                          })}
+                        >
+                          <div
+                            className={classNames(
+                              "flex h-full min-h-[40px] w-full items-center justify-center whitespace-nowrap bg-white px-3 text-center",
+                              {
+                                "rounded-tr rounded-br":
+                                  fieldIndex === fields.length - 2,
+                              }
+                            )}
+                          >
+                            {fields[fieldIndex].value
+                              ? fields[fieldIndex].value(bounty)
+                              : cell.render("Cell")}
+                          </div>
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

@@ -1,3 +1,7 @@
-import BountyDashboard from "../../../app/dashboard/bounty";
+import noSsr from "../../../utils/no-ssr";
 
-export default BountyDashboard;
+const BountyDashboardWithoutSSR = noSsr(() =>
+  import("../../../app/dashboard/bounty")
+);
+
+export default BountyDashboardWithoutSSR;
