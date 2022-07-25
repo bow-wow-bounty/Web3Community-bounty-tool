@@ -24,4 +24,8 @@
   .prose {
     --tw-prose-links: #3D68AD !important;
   }
+
+  .container {
+    @apply px-4
+  }
 }
