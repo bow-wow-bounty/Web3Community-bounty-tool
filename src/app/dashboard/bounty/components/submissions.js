@@ -19,7 +19,7 @@ const Submissions = ({ submissions, reviewSubmissions }) => {
   }, [copied]);
 
   return (
-    <div className="relative w-1/2 flex-1">
+    <div className="relative w-full flex-1 lg:w-1/2">
       <p className="font-display text-3xl">Submissions Received</p>
       <div className="mt-8 rounded-md bg-white p-6 pt-0 shadow">
         <dl className="space-y-6 divide-y divide-gray-200">
@@ -49,9 +49,11 @@ const Submissions = ({ submissions, reviewSubmissions }) => {
                           {(index + 1).toString().padStart(2, "0")}
                         </p>
                         <div className="relative flex-1 overflow-hidden px-4">
-                          <div className="mb-1.5 flex">
-                            <p className="mr-2 block flex w-full items-center justify-start overflow-hidden text-ellipsis text-sm font-semibold">
-                              {wallet}
+                          <div className="mb-1.5 flex flex-wrap justify-start lg:flex-nowrap">
+                            <p className="mr-2 block flex w-full items-center justify-start text-sm font-semibold">
+                              <span className="overflow-hidden text-ellipsis whitespace-nowrap">
+                                {wallet}
+                              </span>
                               <CopyToClipboard
                                 text={wallet}
                                 onCopy={() => setCopied("Copy Wallet Address")}
@@ -65,7 +67,7 @@ const Submissions = ({ submissions, reviewSubmissions }) => {
                               </CopyToClipboard>
                             </p>
 
-                            <div className="flex flex-1 items-center whitespace-nowrap px-16">
+                            <div className="flex flex-1 items-center whitespace-nowrap md:px-16">
                               <p className="mr-3 text-xs">Mark as Reviewed</p>
                               <Button
                                 className="border-0 !p-0"
@@ -85,7 +87,7 @@ const Submissions = ({ submissions, reviewSubmissions }) => {
                               </Button>
                             </div>
                           </div>
-                          <div className="flex space-x-4">
+                          <div className="flex flex-wrap space-x-4 lg:flex-nowrap">
                             {[
                               {
                                 key: "discord",

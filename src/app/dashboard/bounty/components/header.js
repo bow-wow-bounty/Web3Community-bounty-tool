@@ -26,8 +26,8 @@ const Header = ({
   const ended = useMemo(() => new Date() >= new Date(deadline), [deadline]);
 
   return (
-    <div className="relative flex items-center rounded-lg bg-theme-orange p-8 shadow">
-      <div className="relative mr-4 aspect-[16/9] w-1/4 overflow-hidden rounded-md">
+    <div className="relative flex flex-col items-center rounded-lg bg-theme-orange p-8 shadow lg:flex-row">
+      <div className="relative mb-4 aspect-[16/9] w-full overflow-hidden rounded-md lg:mr-4 lg:mb-0 lg:w-1/4">
         <Image layout="fill" src={image} alt={title} objectFit="cover" />
       </div>
       <div className="flex-1">
@@ -42,7 +42,7 @@ const Header = ({
           </p>
         </div>
         <div className="mb-4 flex w-full items-center justify-between">
-          <div className="flex flex-1 items-center justify-start space-x-2">
+          <div className="flex flex-1 flex-wrap items-center justify-start space-x-2 lg:flex-nowrap">
             <p className="inline-flex items-center rounded-full bg-white px-3 py-1.5 text-xs font-medium">
               <DesktopComputerIcon className="mr-1 h-4 w-4" />
               {category}
@@ -87,6 +87,7 @@ Header.propTypes = {
     image: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     deadline: PropTypes.string.isRequired,
+    rewardCurrency: PropTypes.string.isRequired,
     totalReward: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     category: PropTypes.string.isRequired,

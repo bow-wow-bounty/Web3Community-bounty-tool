@@ -10,7 +10,7 @@ const List = ({ bounties }) => {
       {!bounties.length ? (
         <Loading />
       ) : (
-        <ul className="my-8 grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4">
+        <ul className="my-8 grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
           {bounties.map((bounty) => (
             <li
               key={bounty.id}
