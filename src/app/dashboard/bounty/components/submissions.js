@@ -67,7 +67,7 @@ const Submissions = ({ submissions, reviewSubmissions }) => {
                               </CopyToClipboard>
                             </p>
 
-                            <div className="flex flex-1 items-center whitespace-nowrap md:px-16">
+                            <div className="flex flex-1 items-center whitespace-nowrap lg:px-16">
                               <p className="mr-3 text-xs">Mark as Reviewed</p>
                               <Button
                                 className="border-0 !p-0"
