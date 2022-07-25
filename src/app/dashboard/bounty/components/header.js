@@ -1,22 +1,21 @@
 import { LockClosedIcon } from "@heroicons/react/outline";
-import { CheckCircleIcon, DesktopComputerIcon } from "@heroicons/react/solid";
+import {
+  CheckCircleIcon,
+  DesktopComputerIcon,
+  XCircleIcon,
+} from "@heroicons/react/solid";
+import classNames from "classnames";
 import dayjs from "dayjs";
 import Image from "next/image";
 import PropTypes from "prop-types";
+import { useMemo } from "react";
 import { stripHtml } from "string-strip-html";
 
 const Header = ({
-  bounty: {
-    image,
-    title,
-    deadline,
-    totalReward,
-    description,
-    category,
-    ended,
-    type,
-  },
+  bounty: { image, title, deadline, totalReward, description, category, type },
 }) => {
+  const ended = useMemo(() => new Date() >= new Date(deadline), [deadline]);
+
   return (
     <div className="relative flex items-center rounded-lg bg-theme-orange p-8 shadow">
       <div className="relative mr-4 aspect-[16/9] w-1/4 overflow-hidden rounded-md">
@@ -39,8 +38,20 @@ const Header = ({
               <DesktopComputerIcon className="mr-1 h-4 w-4" />
               {category}
             </p>
-            <p className="inline-flex items-center rounded-full bg-white px-3 py-1.5 text-xs font-medium">
-              <CheckCircleIcon className="mr-1 h-4 w-4" />
+            <p
+              className={classNames(
+                "inline-flex items-center rounded-full bg-white px-3 py-1 text-sm font-medium",
+                {
+                  "text-theme-dark-green": !ended,
+                  "text-theme-red": ended,
+                }
+              )}
+            >
+              {!ended ? (
+                <CheckCircleIcon className="mr-1 h-4 w-4" />
+              ) : (
+                <XCircleIcon className="mr-1 h-4 w-4" />
+              )}
               {!ended ? "Active" : "Expired"}
             </p>
             <p className="rounded-full border border-black bg-black py-1.5 px-4 text-xs font-bold text-white">
