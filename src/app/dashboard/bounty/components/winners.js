@@ -33,7 +33,7 @@ const Winners = ({ winners, winnerCount, rewardCurrency, refresh }) => {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isSubmitting },
+    formState: { errors, isSubmitting, values },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -69,55 +69,57 @@ const Winners = ({ winners, winnerCount, rewardCurrency, refresh }) => {
     <div className="mt-8 w-full lg:mt-0 lg:w-[28em]">
       <p className="font-display text-3xl">Choose Winners</p>
       <form onSubmit={onSubmit} className="mt-4 space-y-4 lg:px-4">
-        {fields.map((field, index) => (
-          <div
-            key={field.id}
-            className="space-y-4 rounded bg-white py-2 shadow-lg lg:p-6"
-          >
-            <div className="flex space-x-4">
-              <p className="flex-1 whitespace-nowrap rounded bg-theme-orange py-1 px-3 text-center font-display text-2xl">
-                Winner #{index + 1}
-              </p>
-              <div className="flex">
-                <Input
-                  type="number"
-                  name={`winners.${index}.amount`}
-                  register={register}
-                  watch={watch}
-                  errors={errors}
-                  placeholder="Enter Amount"
-                  className="max-w-[9em] rounded-r-none"
-                />
-                <p className="flex items-center justify-center rounded-r bg-black px-3 text-sm text-white">
-                  {rewardCurrency}
+        {fields.map((field, index) => {
+          return (
+            <div
+              key={field.id}
+              className="space-y-4 rounded bg-white py-2 shadow-lg lg:p-6"
+            >
+              <div className="flex space-x-4">
+                <p className="flex-1 whitespace-nowrap rounded bg-theme-orange py-1 px-3 text-center font-display text-2xl">
+                  Winner #{index + 1}
                 </p>
+                <div className="flex">
+                  <Input
+                    type="number"
+                    name={`winners.${index}.amount`}
+                    register={register}
+                    watch={watch}
+                    errors={errors}
+                    placeholder="Enter Amount"
+                    className="max-w-[9em] rounded-r-none"
+                  />
+                  <p className="flex items-center justify-center rounded-r bg-black px-3 text-sm text-white">
+                    {rewardCurrency}
+                  </p>
+                </div>
               </div>
+              <Input
+                type="text"
+                name={`winners.${index}.wallet`}
+                register={register}
+                watch={watch}
+                errors={errors}
+                placeholder="Enter Wallet Address"
+              />
+              {Boolean(winners.length) && (
+                <Button
+                  variant={ButtonVariant.Primary}
+                  className="flex w-full justify-center"
+                  onClick={() =>
+                    createMultisigTransaction(
+                      wallet,
+                      winners[index].wallet,
+                      winners[index].amount
+                    )
+                  }
+                >
+                  Create Transaction
+                </Button>
+              )}
             </div>
-            <Input
-              type="text"
-              name={`winners.${index}.wallet`}
-              register={register}
-              watch={watch}
-              errors={errors}
-              placeholder="Enter Wallet Address"
-            />
-            {Boolean(winners.length) && (
-              <Button
-                variant={ButtonVariant.Primary}
-                className="flex w-full justify-center"
-                onClick={() =>
-                  createMultisigTransaction(
-                    wallet,
-                    "7X1TqgzxH7mvuCAiu1Qynj8aQ7wRGKDoAbpC9iT2WiWK",
-                    10
-                  )
-                }
-              >
-                Create Transaction
-              </Button>
-            )}
-          </div>
-        ))}
+          );
+        })}
         {!winners.length && (
           <div className="flex justify-end">
             <Button

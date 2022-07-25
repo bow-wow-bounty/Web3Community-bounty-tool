@@ -9,10 +9,6 @@ const MULTISIG_PUBLIC_KEY = new PublicKey(
   process.env.NEXT_PUBLIC_MULTISIG_PUBLIC_KEY
 );
 
-// const receiverPublicKey = new PublicKey(
-//   "7X1TqgzxH7mvuCAiu1Qynj8aQ7wRGKDoAbpC9iT2WiWK"
-// );
-
 const createMultisigTransaction = async (wallet, receiver, amount) => {
   try {
     const connection = new Connection(clusterApiUrl(network), "confirmed");
@@ -73,7 +69,8 @@ const createMultisigTransaction = async (wallet, receiver, amount) => {
       }
     );
   } catch (e) {
-    console.error(e);
+    // eslint-disable-next-line no-alert
+    alert(e.message);
     return false;
   }
 };
