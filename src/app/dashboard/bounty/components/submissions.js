@@ -50,7 +50,7 @@ const Submissions = ({ submissions, reviewSubmissions }) => {
                         </p>
                         <div className="relative flex-1 overflow-hidden px-4">
                           <div className="mb-1.5 flex flex-wrap justify-start lg:flex-nowrap">
-                            <p className="mr-2 block flex w-full items-center justify-start text-sm font-semibold">
+                            <div className="mr-2 block flex w-full items-center justify-start text-sm font-semibold">
                               <span className="overflow-hidden text-ellipsis whitespace-nowrap">
                                 {wallet}
                               </span>
@@ -65,7 +65,7 @@ const Submissions = ({ submissions, reviewSubmissions }) => {
                                   <DuplicateIcon className="h-3 w-3" />
                                 </div>
                               </CopyToClipboard>
-                            </p>
+                            </div>
 
                             <div className="flex flex-1 items-center whitespace-nowrap lg:px-16">
                               <p className="mr-3 text-xs">Mark as Reviewed</p>

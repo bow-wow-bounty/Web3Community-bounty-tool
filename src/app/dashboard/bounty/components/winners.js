@@ -1,7 +1,5 @@
 import { yupResolver } from "@hookform/resolvers/yup";
-import { AnchorProvider } from "@project-serum/anchor";
-import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
-import { clusterApiUrl, Connection } from "@solana/web3.js";
+import { useWallet } from "@solana/wallet-adapter-react";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import { useMemo } from "react";
@@ -11,7 +9,7 @@ import { array, number, object, string } from "yup";
 import Api from "../../../../api/instances/core";
 import Button, { ButtonVariant } from "../../../../components/button";
 import Input from "../../../../components/input";
-import AuthStore from "../../../../stores/auth-store";
+import createMultisigTransaction from "../../../../utils/create-multisig-transaction";
 
 const schema = object({
   winners: array()
@@ -25,30 +23,10 @@ const schema = object({
     .required(),
 });
 
-const network = WalletAdapterNetwork.Mainnet;
-
-const connection = new Connection(clusterApiUrl(network), "confirmed");
-
-const processedConnection = new Connection(clusterApiUrl(network), "processed");
-
-const getProvider = (wallet, commitment = "confirmed") => {
-  if (commitment === "processed") {
-    return new AnchorProvider(processedConnection, wallet, {
-      skipPreflight: true,
-    });
-  }
-
-  return new AnchorProvider(connection, wallet, { skipPreflight: true });
-};
-
 const Winners = ({ winners, winnerCount, rewardCurrency, refresh }) => {
   const router = useRouter();
 
-  const { user } = AuthStore.useContainer();
-
-  const provider = getProvider(user.wallet);
-
-  console.log({ provider });
+  const wallet = useWallet();
 
   const {
     control,
@@ -88,13 +66,13 @@ const Winners = ({ winners, winnerCount, rewardCurrency, refresh }) => {
   );
 
   return (
-    <div className="w-[28em]">
+    <div className="mt-8 w-full lg:mt-0 lg:w-[28em]">
       <p className="font-display text-3xl">Choose Winners</p>
-      <form onSubmit={onSubmit} className="mt-4 space-y-4 px-4">
+      <form onSubmit={onSubmit} className="mt-4 space-y-4 lg:px-4">
         {fields.map((field, index) => (
           <div
             key={field.id}
-            className="space-y-4 rounded bg-white p-6 shadow-lg"
+            className="space-y-4 rounded bg-white py-2 shadow-lg lg:p-6"
           >
             <div className="flex space-x-4">
               <p className="flex-1 whitespace-nowrap rounded bg-theme-orange py-1 px-3 text-center font-display text-2xl">
@@ -123,6 +101,21 @@ const Winners = ({ winners, winnerCount, rewardCurrency, refresh }) => {
               errors={errors}
               placeholder="Enter Wallet Address"
             />
+            {Boolean(winners.length) && (
+              <Button
+                variant={ButtonVariant.Primary}
+                className="flex w-full justify-center"
+                onClick={() =>
+                  createMultisigTransaction(
+                    wallet,
+                    "7X1TqgzxH7mvuCAiu1Qynj8aQ7wRGKDoAbpC9iT2WiWK",
+                    10
+                  )
+                }
+              >
+                Create Transaction
+              </Button>
+            )}
           </div>
         ))}
         {!winners.length && (
@@ -147,7 +140,7 @@ Winners.propTypes = {
   winners: PropTypes.arrayOf(
     PropTypes.shape({
       wallet: PropTypes.string,
-      amount: PropTypes.string,
+      amount: PropTypes.number,
     })
   ),
   refresh: PropTypes.func.isRequired,
