@@ -21,14 +21,15 @@ const Header = ({
   const ended = useMemo(() => new Date() >= new Date(deadline), [deadline]);
 
   return (
-    <div className="relative flex items-center rounded-lg bg-theme-orange p-8 shadow">
-      <div className="relative mr-4 aspect-[16/9] w-1/4 overflow-hidden rounded-md">
+    <div className="relative flex flex-col items-center rounded-lg bg-theme-orange p-8 shadow lg:flex-row">
+      <div className="relative mb-4 aspect-[16/9] w-full overflow-hidden rounded-md lg:mr-4 lg:mb-0 lg:w-1/4">
         <Image layout="fill" src={image} alt={title} objectFit="cover" />
       </div>
-      <div className="flex-1">
+      <div className="w-full flex-1">
         <div className="py-4">
           <p className="text-xs">
-            Deadline: {dayjs(new Date(deadline)).format(`MMM DD YYYY hh:mm A`)}
+            Deadline:
+            {dayjs(new Date(deadline)).format(`MMM DD YYYY hh:mm A`)}
           </p>
           <p className="font-display text-2xl">{title}</p>
           <p className="text-sm line-clamp-2">
@@ -36,7 +37,7 @@ const Header = ({
           </p>
         </div>
         <div className="mb-4 flex w-full items-center justify-between">
-          <div className="flex flex-1 items-center justify-start space-x-2">
+          <div className="flex flex-1 flex-wrap items-center justify-start space-x-2 lg:flex-nowrap">
             <p className="inline-flex items-center rounded-full bg-white px-3 py-1.5 text-xs font-medium">
               <DesktopComputerIcon className="mr-1 h-4 w-4" />
               {category}
