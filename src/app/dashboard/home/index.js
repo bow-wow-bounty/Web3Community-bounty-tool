@@ -30,7 +30,16 @@ const Dashboard = () => {
 
   useEffect(() => {
     Api.get("/bounty/owned").then((list) => {
-      setBounties(list.map((item, index) => ({ ...item, index })));
+      setBounties(
+        list.map((item, index) => ({
+          ...item,
+          index,
+          status:
+            new Date(item.deadline).getTime() > Date.now()
+              ? "Active"
+              : "Expired",
+        }))
+      );
     });
   }, []);
 
