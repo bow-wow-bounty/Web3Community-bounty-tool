@@ -36,7 +36,6 @@ const BountyCard = ({
       const d = new Date(deadline);
       const e = d.getTime();
       const distance = e - now;
-      console.log(distance, e, now);
       // Time calculations for days, hours, minutes and seconds
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor(
@@ -52,7 +51,7 @@ const BountyCard = ({
         setCountdownDeadline("");
       }
     }, 1000);
-  }, []);
+  }, [deadline]);
   return (
     <Link href={`/bounty/${id}`}>
       <div>
