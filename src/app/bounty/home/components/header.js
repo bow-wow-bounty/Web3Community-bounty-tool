@@ -78,7 +78,7 @@ const Header = ({
               ) : (
                 <XCircleIcon className="mr-1 h-4 w-4" />
               )}
-              {!ended ? "Active" : "Expired"}
+              {!ended ? "Active" : "Ended"}
             </p>
             <p className="rounded-full border border-black bg-black py-1.5 px-4 text-xs font-bold text-white">
               <span className="block translate-y-[1px]">

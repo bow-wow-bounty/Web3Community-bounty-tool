@@ -8,7 +8,7 @@ import classNames from "classnames";
 import dayjs from "dayjs";
 import Image from "next/image";
 import PropTypes from "prop-types";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { stripHtml } from "string-strip-html";
 
 import Link from "../../../../../components/link";
@@ -25,7 +25,34 @@ const BountyCard = ({
   totalReward,
 }) => {
   const ended = useMemo(() => new Date() >= new Date(deadline), [deadline]);
+  const [countdownDeadline, setCountdownDeadline] = useState("calculating");
+  // Update the count down every 1 second
 
+  useEffect(() => {
+    const x = setInterval(() => {
+      // Get today's date and time
+      const now = Date.now();
+      // Find the distance between now and the count down date
+      const d = new Date(deadline);
+      const e = d.getTime();
+      const distance = e - now;
+      console.log(distance, e, now);
+      // Time calculations for days, hours, minutes and seconds
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+      );
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      setCountdownDeadline(`${days}d ${hours}h ${minutes}m ${seconds}s `);
+
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        clearInterval(x);
+        setCountdownDeadline("");
+      }
+    }, 1000);
+  }, []);
   return (
     <Link href={`/bounty/${id}`}>
       <div>
@@ -40,6 +67,7 @@ const BountyCard = ({
             <p className="text-xs underline">
               {dayjs(new Date(deadline)).format(`MMM DD YYYY hh:mm A`)}
             </p>
+            <div className="text-xs font-bold">{countdownDeadline}</div>
           </div>
           <div>
             <p className="rounded-full border border-black py-1 px-4 text-sm font-bold">
@@ -74,7 +102,7 @@ const BountyCard = ({
               ) : (
                 <XCircleIcon className="mr-1 h-4 w-4" />
               )}
-              {!ended ? "Active" : "Expired"}
+              {!ended ? "Active" : "Ended"}
             </p>
           </div>
           <div>

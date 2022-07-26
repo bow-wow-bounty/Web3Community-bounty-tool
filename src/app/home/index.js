@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
 
 import Api from "../../api/instances/core";
 import Header from "./components/header";
@@ -15,6 +16,7 @@ const Home = () => {
 
   return (
     <div className="min-h-full-page container mx-auto space-y-8 py-8">
+      <ToastContainer />
       <Header setQuery={setQuery} />
       <List bounties={bounties} />
     </div>

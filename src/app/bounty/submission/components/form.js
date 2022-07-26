@@ -1,9 +1,12 @@
+import "react-toastify/dist/ReactToastify.css";
+
 import { XIcon } from "@heroicons/react/outline";
 import { PlusIcon } from "@heroicons/react/solid";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/router";
 import { useMemo } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { array, object, string } from "yup";
 
 import Api from "../../../../api/instances/core";
@@ -58,7 +61,15 @@ const Form = () => {
         });
 
         if (submission) {
-          await router.push(`/bounty/${router.query.id}`);
+          toast.success("Submission Sucessful", {
+            position: "bottom-left",
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+          await router.push(`/`);
         }
 
         return Boolean(submission);

@@ -21,7 +21,7 @@ const fields = [
       ) : (
         <p className="inline-flex items-center rounded bg-theme-red/10 px-2 py-1 text-xs font-medium text-theme-red">
           <XCircleIcon className="mr-1 h-2 w-2" />
-          Expired
+          Ended
         </p>
       ),
   },

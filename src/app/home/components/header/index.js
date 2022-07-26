@@ -110,7 +110,7 @@ const Header = ({ setQuery }) => {
             options={[
               { key: "all", value: "All" },
               { key: "active", value: "Active" },
-              { key: "expired", value: "Expired" },
+              { key: "expired", value: "Ended" },
             ]}
           />
         </div>
