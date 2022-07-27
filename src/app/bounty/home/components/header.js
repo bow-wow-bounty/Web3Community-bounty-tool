@@ -54,7 +54,7 @@ const Header = ({
             {dayjs(new Date(deadline)).format(`MMM DD YYYY hh:mm A`)}
           </p>
           <p className="font-display text-2xl">{title}</p>
-          <p className="text-sm line-clamp-2">
+          <p className="max-w-[35vw] text-sm line-clamp-2">
             {stripHtml(description).result}
           </p>
         </div>

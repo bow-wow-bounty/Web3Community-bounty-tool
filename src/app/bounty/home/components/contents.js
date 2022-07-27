@@ -41,30 +41,45 @@ const Contents = ({
         <div
           dangerouslySetInnerHTML={{ __html: description }}
           className="prose max-w-full text-sm"
+          style={{
+            overflowWrap: "anywhere",
+          }}
         />
       </Step>
       <Step title="Your tasks">
         <div
           dangerouslySetInnerHTML={{ __html: todo }}
           className="prose max-w-full text-sm"
+          style={{
+            overflowWrap: "anywhere",
+          }}
         />
       </Step>
       <Step title="Prize Distribution">
         <div
           dangerouslySetInnerHTML={{ __html: distribution }}
           className="prose max-w-full text-sm"
+          style={{
+            overflowWrap: "anywhere",
+          }}
         />
       </Step>
       <Step title="Evaluation criteria">
         <div
           dangerouslySetInnerHTML={{ __html: evaluation }}
           className="prose max-w-full text-sm"
+          style={{
+            overflowWrap: "anywhere",
+          }}
         />
       </Step>
       <Step title="Resources">
         <div
           dangerouslySetInnerHTML={{ __html: resources }}
           className="prose max-w-full text-sm"
+          style={{
+            overflowWrap: "anywhere",
+          }}
         />
       </Step>
       <Step title="About the Thugdao" hideLine>
