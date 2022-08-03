@@ -51,6 +51,7 @@ const bountyCreate = handler(
         pocDiscord,
         creator: wallet,
         ended: false,
+        status: "NOT_APPROVED",
       },
     });
 

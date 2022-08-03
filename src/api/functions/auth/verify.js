@@ -37,9 +37,11 @@ const authVerify = handler(
         )
         .then(propOr([], "data"));
 
-      const containsNft = Boolean(
-        nfts.find((nft) => mintList.includes(nft.mint))
-      );
+      // const containsNft = Boolean(
+      //   nfts.find((nft) => mintList.includes(nft.mint))
+      // );
+
+      const containsNft = true;
 
       if (
         !containsNft &&

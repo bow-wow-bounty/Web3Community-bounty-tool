@@ -1,15 +1,19 @@
+import "react-toastify/dist/ReactToastify.css";
+
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useWallet } from "@solana/wallet-adapter-react";
+import { useConnection, useWallet } from "@solana/wallet-adapter-react";
 import { useRouter } from "next/router";
 import PropTypes from "prop-types";
 import { useMemo } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
+import { ToastContainer } from "react-toastify";
 import { array, number, object, string } from "yup";
 
 import Api from "../../../../api/instances/core";
 import Button, { ButtonVariant } from "../../../../components/button";
 import Input from "../../../../components/input";
-import createMultisigTransaction from "../../../../utils/create-multisig-transaction";
+// import createMultisigTransaction from "../../../../utils/create-multisig-transaction";
+import createTransaction from "../../../../utils/create-transaction";
 
 const schema = object({
   winners: array()
@@ -23,17 +27,18 @@ const schema = object({
     .required(),
 });
 
-const Winners = ({ winners, winnerCount, rewardCurrency, refresh }) => {
+// eslint-disable-next-line react/prop-types
+const Winners = ({ winners, winnerCount, rewardCurrency, refresh, status }) => {
   const router = useRouter();
-
-  const wallet = useWallet();
+  const { connection } = useConnection();
+  const { publicKey, sendTransaction } = useWallet();
 
   const {
     control,
     register,
     handleSubmit,
     watch,
-    formState: { errors, isSubmitting, values },
+    formState: { errors, isSubmitting },
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
@@ -60,13 +65,21 @@ const Winners = ({ winners, winnerCount, rewardCurrency, refresh }) => {
             ...winner,
             bountyId: router.query.id,
           })),
-        }).then(() => refresh())
+        })
+          .then(() =>
+            Api.post("/bounty/update", {
+              id: router.query.id,
+              status: "APPROVED",
+            })
+          )
+          .then(() => refresh())
       ),
     [handleSubmit, refresh, router.query.id]
   );
 
   return (
     <div className="mt-8 w-full lg:mt-0 lg:w-[28em]">
+      <ToastContainer />
       <p className="font-display text-3xl">Choose Winners</p>
       <form onSubmit={onSubmit} className="mt-4 space-y-4 lg:px-4">
         {fields.map((field, index) => {
@@ -83,6 +96,8 @@ const Winners = ({ winners, winnerCount, rewardCurrency, refresh }) => {
                   <Input
                     type="number"
                     name={`winners.${index}.amount`}
+                    step="0.001"
+                    presicion={2}
                     register={register}
                     watch={watch}
                     errors={errors}
@@ -102,24 +117,25 @@ const Winners = ({ winners, winnerCount, rewardCurrency, refresh }) => {
                 errors={errors}
                 placeholder="Enter Wallet Address"
               />
-              {Boolean(winners.length) && (
-                <Button
-                  variant={ButtonVariant.Primary}
-                  className="flex w-full justify-center"
-                  onClick={() =>
-                    createMultisigTransaction(
-                      wallet,
-                      winners[index].wallet,
-                      winners[index].amount
-                    )
-                  }
-                >
-                  Create Transaction
-                </Button>
-              )}
             </div>
           );
         })}
+        {Boolean(winners.length) && status !== "AWARDED" && (
+          <Button
+            variant={ButtonVariant.Primary}
+            className="flex w-full justify-center"
+            onClick={() =>
+              createTransaction(publicKey, connection, sendTransaction, winners)
+                ? Api.post("/bounty/update", {
+                    id: router.query.id,
+                    status: "AWARDED",
+                  }).then(() => refresh())
+                : console.log("Transaction Unsuccessful")
+            }
+          >
+            Send Reward
+          </Button>
+        )}
         {!winners.length && (
           <div className="flex justify-end">
             <Button

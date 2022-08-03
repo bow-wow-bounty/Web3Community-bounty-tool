@@ -11,11 +11,15 @@ const Bounty = () => {
     query: { id },
   } = useRouter();
   const [bounty, setBounty] = useState(null);
+  const [bountywinners, setBountywinners] = useState({ winners: [] });
 
   useEffect(() => {
     if (id) {
       Api.get(`/bounty/${id}`).then((data) => {
         setBounty(data);
+      });
+      Api.get(`/bounty/winners/${id}`).then((data) => {
+        setBountywinners(data);
       });
     }
   }, [id]);
@@ -27,7 +31,7 @@ const Bounty = () => {
       ) : (
         <>
           <Header bounty={bounty} />
-          <Contents bounty={bounty} />
+          <Contents bounty={bounty} bountywinners={bountywinners} />
         </>
       )}
     </div>

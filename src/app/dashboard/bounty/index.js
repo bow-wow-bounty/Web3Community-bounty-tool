@@ -12,9 +12,12 @@ const BountyDashboard = () => {
     query: { id },
   } = useRouter();
   const [bounty, setBounty] = useState(null);
-
+  const [bounty1, setBounty1] = useState(null);
   const loadData = useCallback(() => {
     if (id) {
+      Api.get(`/bounty/${id}`).then((data) => {
+        setBounty1(data);
+      });
       Api.get(`/bounty/owned/${id}`).then((data) => {
         setBounty(data);
       });
@@ -54,6 +57,7 @@ const BountyDashboard = () => {
               winnerCount={bounty?.winnerCount}
               rewardCurrency={bounty?.rewardCurrency}
               refresh={loadData}
+              status={bounty1?.status}
             />
           </div>
         </div>

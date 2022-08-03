@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/no-danger */
 import "react-quill/dist/quill.snow.css";
 
@@ -22,11 +23,11 @@ const Contents = ({
     evaluation,
     resources,
   },
+  bountywinners,
 }) => {
   const { user } = AuthStore.useContainer();
-
   const ended = useMemo(() => new Date() >= new Date(deadline), [deadline]);
-
+  console.log(bountywinners);
   const allowSubmission = useMemo(
     () =>
       !ended &&
@@ -37,6 +38,20 @@ const Contents = ({
 
   return (
     <div className="mt-8">
+      <Step title="Winners">
+        <ul className="flex flex-col">
+          {Boolean(bountywinners.length) &&
+            bountywinners.map((winner) => {
+              return (
+                <li className="text-md" key={winner.wallet}>
+                  {winner.wallet}
+                  {winner.submission.twitter}
+                  {winner.submission.discord}
+                </li>
+              );
+            })}
+        </ul>
+      </Step>
       <Step title="About the bounty">
         <div
           dangerouslySetInnerHTML={{ __html: description }}

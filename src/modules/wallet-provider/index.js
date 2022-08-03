@@ -19,7 +19,7 @@ import { useMemo } from "react";
 import { ChildrenPropType } from "../../utils/prop-types";
 
 const WalletProvider = ({ children }) => {
-  const network = WalletAdapterNetwork.Mainnet;
+  const network = WalletAdapterNetwork.Devnet;
 
   const endpoint = useMemo(() => clusterApiUrl(network), [network]);
 

@@ -16,6 +16,12 @@ enum Role {
   SUPER_ADMIN
 }
 
+enum Status {
+  NOT_APPROVED
+  APPROVED
+  AWARDED
+}
+
 model Roles {
   wallet    String   @id
   roles     Role[]
@@ -24,12 +30,14 @@ model Roles {
 }
 
 model Winner {
-  wallet    String   @id
+  wallet    String   
   bounty    Bounty   @relation(fields: [bountyId], references: [id])
-  bountyId  String
-  amount    Int
+  submission Submission   @relation(fields: [wallet, bountyId], references: [wallet, bountyId])
+  bountyId  String   
+  amount    Float
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  @@id([wallet,bountyId])
 }
 
 model Bounty {
@@ -53,6 +61,7 @@ model Bounty {
   pocName        String
   pocTwitter     String
   pocDiscord     String
+  status         Status
   submissions    Submission[]
   winners        Winner[]
   createdAt      DateTime     @default(now())
@@ -73,6 +82,6 @@ model Submission {
   reviewed    Boolean
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-
+  winners     Winner[]
   @@id([wallet, bountyId])
 }

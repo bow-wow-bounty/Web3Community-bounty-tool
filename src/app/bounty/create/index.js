@@ -197,7 +197,7 @@ const CreateBounty = () => {
               label="&nbsp;"
               options={[
                 { key: "sol", value: "SOL" },
-                { key: "usdc", value: "USDC" },
+                // { key: "usdc", value: "USDC" },
               ]}
             />
           </div>

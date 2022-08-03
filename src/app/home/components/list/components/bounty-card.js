@@ -23,6 +23,7 @@ const BountyCard = ({
   deadline,
   rewardCurrency,
   totalReward,
+  status,
 }) => {
   const ended = useMemo(() => new Date() >= new Date(deadline), [deadline]);
   const [countdownDeadline, setCountdownDeadline] = useState("calculating");
@@ -103,6 +104,17 @@ const BountyCard = ({
               )}
               {!ended ? "Active" : "Ended"}
             </p>
+            <p
+              className={classNames(
+                "inline-flex items-center rounded-full px-3 py-1 text-sm font-medium",
+                {
+                  "bg-theme-green/10 text-theme-dark-green": !ended,
+                  "bg-theme-red/10 text-theme-red": ended,
+                }
+              )}
+            >
+              {status}
+            </p>
           </div>
           <div>
             {type === "Closed" && <LockClosedIcon className="h-6 w-6" />}
@@ -125,4 +137,5 @@ BountyCard.propTypes = {
   deadline: PropTypes.string.isRequired,
   rewardCurrency: PropTypes.string.isRequired,
   totalReward: PropTypes.number.isRequired,
+  status: PropTypes.string.isRequired,
 };

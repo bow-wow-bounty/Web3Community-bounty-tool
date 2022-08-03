@@ -48,6 +48,7 @@ const bountyList = handler(
         deadline: true,
         rewardCurrency: true,
         totalReward: true,
+        status: true,
       },
     });
     res.status(200).json(bounties);

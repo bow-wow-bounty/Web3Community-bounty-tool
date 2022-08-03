@@ -1,5 +1,6 @@
 import { LogoutIcon } from "@heroicons/react/outline";
 import { PlusCircleIcon, ViewGridIcon } from "@heroicons/react/solid";
+import { useWallet } from "@solana/wallet-adapter-react";
 import Image from "next/image";
 import { useMemo } from "react";
 
@@ -24,6 +25,8 @@ const Header = () => {
     () => Boolean(user?.roles?.includes("CREATOR")),
     [user?.roles]
   );
+
+  const { publicKey } = useWallet();
 
   return (
     <div className="sticky top-0 z-10 flex min-h-[72px] w-full bg-white shadow-md">
@@ -80,11 +83,20 @@ const Header = () => {
           >
             <LogoutIcon className="h-4 w-4 translate-y-[1px] lg:mr-1 lg:hidden lg:h-5 lg:w-5" />
             <span className="hidden lg:inline">
-              {isProcessing
-                ? "Processing..."
-                : !isLoggedIn
-                ? "Connect Wallet"
-                : "Logout"}
+              {isProcessing ? (
+                "Processing..."
+              ) : !isLoggedIn || publicKey == null ? (
+                "Connect Wallet"
+              ) : (
+                <span className="font-body text-sm font-semibold">{`${publicKey
+                  .toString()
+                  .substring(0, 3)}...${publicKey
+                  .toString()
+                  .substring(
+                    publicKey.toString().length - 1,
+                    publicKey.toString().length - 4
+                  )}`}</span>
+              )}
             </span>
           </Button>
         </div>

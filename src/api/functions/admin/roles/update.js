@@ -25,7 +25,7 @@ const roleUpdate = handler(
 
     res.status(200).json(updates);
   },
-  { isProtected: true, roles: ["SUPER_ADMIN"] }
+  { isProtected: true, roles: ["SUPER_ADMIN", "ADMIN"] }
 );
 
 export default roleUpdate;
