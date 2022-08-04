@@ -4,7 +4,6 @@ import Head from "next/head";
 import PropTypes from "prop-types";
 
 import Modules from "../modules";
-import { preview } from "./dashboard/preview.jpg";
 
 const App = ({ Component, pageProps }) => {
   return (
@@ -24,7 +23,11 @@ const App = ({ Component, pageProps }) => {
           content="Welcome to ThugDAO Bounty Tool"
           key="title"
         />
-        <meta property="og:image" content={preview} key="og-image" />
+        <meta
+          property="og:image"
+          content="https://i.ibb.co/r7FmtS1/Screenshot-from-2022-08-04-08-20-03.jpg"
+          key="og-image"
+        />
       </Head>
       <Modules>
         <Component {...pageProps} />
