@@ -25,7 +25,7 @@ const App = ({ Component, pageProps }) => {
         />
         <meta
           property="og:image"
-          content="https://i.ibb.co/bv79Sf9/Screenshot-from-2022-08-04-08-20-03.png"
+          content="https://live.staticflickr.com/4561/38054606355_26429c884f_b.jpg"
           key="og-image"
         />
       </Head>
