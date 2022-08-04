@@ -17,6 +17,12 @@ const App = ({ Component, pageProps }) => {
         href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
       />
       <Head>
+        <title>ThugDAO Bounty Tool</title>
+        <meta
+          property="og:title"
+          content="Welcome to ThugDAO Bounty Tool"
+          key="title"
+        />
         <meta
           property="og:image"
           content="https://i.ibb.co/bv79Sf9/Screenshot-from-2022-08-04-08-20-03.png"
