@@ -11,7 +11,7 @@ const Bounty = () => {
     query: { id },
   } = useRouter();
   const [bounty, setBounty] = useState(null);
-  const [bountywinners, setBountywinners] = useState({ winners: [] });
+  const [bountywinners, setBountywinners] = useState([]);
 
   useEffect(() => {
     if (id) {
