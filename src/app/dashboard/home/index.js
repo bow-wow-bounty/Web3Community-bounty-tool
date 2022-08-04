@@ -34,7 +34,7 @@ const Dashboard = () => {
         list.map((item, index) => ({
           ...item,
           index,
-          status:
+          status_l:
             new Date(item.deadline).getTime() > Date.now()
               ? "Active"
               : "Expired",

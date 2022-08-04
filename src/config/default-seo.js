@@ -16,6 +16,15 @@ const defaultSeo = {
       href: "/favicon.ico",
     },
   ],
+  images: [
+    {
+      url: "https://i.ibb.co/bv79Sf9/Screenshot-from-2022-08-04-08-20-03.png",
+      width: 800,
+      height: 600,
+      alt: "Og Image Alt",
+      type: "image/png",
+    },
+  ],
 };
 
 export default defaultSeo;

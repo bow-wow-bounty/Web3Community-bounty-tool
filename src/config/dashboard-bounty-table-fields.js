@@ -74,9 +74,11 @@ const fields = [
     },
   },
   {
-    name: "Reward Status",
+    name: "Status",
     key: "rewardStatus",
-    value: ({ winners }) => (winners?.length ? "Txn Initiated" : "Pending"),
+    value: ({ status }) => (
+      <p className="max-w-[10em] overflow-hidden text-ellipsis">{status}</p>
+    ),
   },
 ];
 
