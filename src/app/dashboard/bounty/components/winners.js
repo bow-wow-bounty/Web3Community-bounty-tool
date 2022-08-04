@@ -124,14 +124,20 @@ const Winners = ({ winners, winnerCount, rewardCurrency, refresh, status }) => {
           <Button
             variant={ButtonVariant.Primary}
             className="flex w-full justify-center"
-            onClick={() =>
-              createTransaction(publicKey, connection, sendTransaction, winners)
-                ? Api.post("/bounty/update", {
-                    id: router.query.id,
-                    status: "AWARDED",
-                  }).then(() => refresh())
-                : console.log("Transaction Unsuccessful")
-            }
+            onClick={async () => {
+              const flag = await createTransaction(
+                publicKey,
+                connection,
+                sendTransaction,
+                winners
+              );
+              if (flag) {
+                Api.post("/bounty/update", {
+                  id: router.query.id,
+                  status: "AWARDED",
+                }).then(() => refresh());
+              }
+            }}
           >
             Send Reward
           </Button>

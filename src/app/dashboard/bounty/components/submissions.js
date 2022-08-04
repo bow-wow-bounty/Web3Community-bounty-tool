@@ -37,6 +37,7 @@ const Submissions = ({ submissions, reviewSubmissions }) => {
                 email,
                 links,
                 files,
+                description,
               },
               index
             ) => (
@@ -197,7 +198,7 @@ const Submissions = ({ submissions, reviewSubmissions }) => {
                       leaveTo="transform opacity-0"
                     >
                       <Disclosure.Panel as="dd" className="mt-2 pr-12">
-                        <div className="mt-8 flex space-x-16 text-sm">
+                        <div className="mt-8 flex flex-wrap gap-x-4 gap-y-4 text-sm">
                           <div className="flex-1">
                             <p className="text-xs">Links Submitted</p>
                             <ol className="mt-2 space-y-2">
@@ -229,6 +230,24 @@ const Submissions = ({ submissions, reviewSubmissions }) => {
                                 </a>
                               ))}
                             </ol>
+                          </div>
+                          <div className="flex-1">
+                            <p className="text-xs">Additional Details</p>
+                            <a
+                              className="flex items-center text-[#3D68AD]"
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <div
+                                dangerouslySetInnerHTML={{
+                                  __html: description,
+                                }}
+                                className="prose max-w-full text-sm"
+                                style={{
+                                  overflowWrap: "anywhere",
+                                }}
+                              />
+                            </a>
                           </div>
                         </div>
                       </Disclosure.Panel>

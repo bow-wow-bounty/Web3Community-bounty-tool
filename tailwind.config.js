@@ -20,6 +20,7 @@ module.exports = {
         "theme-dark-green": "#24965C",
         "theme-blue": "#0B9AD9",
         "theme-dark-blue": "#1887A8",
+        "theme-yellow": "#ca8a04",
       },
     },
   },

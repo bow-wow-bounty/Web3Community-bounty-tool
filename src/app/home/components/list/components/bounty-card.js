@@ -12,6 +12,7 @@ import { useEffect, useMemo, useState } from "react";
 import { stripHtml } from "string-strip-html";
 
 import Link from "../../../../../components/link";
+import medalIcon from "./medal-svgrepo-com.svg";
 
 const BountyCard = ({
   id,
@@ -83,7 +84,7 @@ const BountyCard = ({
           </p>
         </div>
         <div className="flex w-full items-center justify-between p-4">
-          <div className="flex flex-1 items-center justify-start space-x-2">
+          <div className="flex flex-1 flex-wrap items-center justify-start gap-y-2 gap-x-2">
             <p className="inline-flex items-center rounded-full bg-theme-blue/10 px-3 py-1 text-sm font-medium text-theme-dark-blue">
               <DesktopComputerIcon className="mr-1 h-4 w-4" />
               {category}
@@ -104,17 +105,21 @@ const BountyCard = ({
               )}
               {!ended ? "Active" : "Ended"}
             </p>
-            <p
-              className={classNames(
-                "inline-flex items-center rounded-full px-3 py-1 text-sm font-medium",
-                {
-                  "bg-theme-green/10 text-theme-dark-green": !ended,
-                  "bg-theme-red/10 text-theme-red": ended,
-                }
-              )}
-            >
-              {status}
-            </p>
+            {status !== "NOT_APPROVED" ? (
+              <p
+                className={classNames(
+                  "inline-flex items-center rounded-full px-3 py-1 text-sm font-medium",
+                  "bg-theme-yellow/10 text-theme-yellow"
+                )}
+              >
+                <div className="mr-1 h-4 w-4">
+                  <Image src={medalIcon} alt="medal Icon" />
+                </div>
+                Declared
+              </p>
+            ) : (
+              ""
+            )}
           </div>
           <div>
             {type === "Closed" && <LockClosedIcon className="h-6 w-6" />}
