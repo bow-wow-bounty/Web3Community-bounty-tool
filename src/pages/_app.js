@@ -1,5 +1,6 @@
 import "../styles/globals.css";
 
+import Head from "next/head";
 import PropTypes from "prop-types";
 
 import Modules from "../modules";
@@ -15,6 +16,15 @@ const App = ({ Component, pageProps }) => {
         rel="stylesheet"
         href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
       />
+      <Head>
+        <title>My page title</title>
+        <meta property="og:title" content="My page title" key="title" />
+        <meta
+          property="og:image"
+          content="https://live.staticflickr.com/4561/38054606355_26429c884f_b.jpg"
+          key="og-image"
+        />
+      </Head>
       <Modules>
         <Component {...pageProps} />
       </Modules>
