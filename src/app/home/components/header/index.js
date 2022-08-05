@@ -55,14 +55,14 @@ const Header = ({ setQuery }) => {
 
   return (
     <div className="rounded-lg bg-theme-orange p-8 shadow">
-      <p className="font-display text-3xl">Discover Bounties</p>
+      <p className="font-display text-3xl">Hunt Bounties</p>
       <p className="mt-3 max-w-4xl text-sm font-light leading-tight">
-        The ThugBirdz community is the glue that holds us all together, within
-        our flock we have some of the most diamond winged individuals on the
-        planet. Our mission is simply to create an environment that exemplifies
-        kindness. The ThugBirdz community is the glue that holds us all
-        together, within our flock we have some of the most diamond winged
-        individuals on the planet.
+        Get paid for being a ThugBird. Build a career in web3 and get rewarded
+        in SOL & USDC. <br /> <br /> Exclusive to ThugBirdz holders. Bounties
+        build the flock. CAW CAW <br /> <br /> The CawFathers of Thugistan used
+        bounties for generations to build nests, harvest the canna crops and to
+        keep the vibe alive. Hunt, Submit, Earn. No matter your feathers, this
+        flock hunts bounties together. CAW
       </p>
       <form className="mt-6 flex items-center space-x-4" onSubmit={onSubmit}>
         <div className="w-48">
