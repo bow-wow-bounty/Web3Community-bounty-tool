@@ -62,7 +62,7 @@ const Header = ({ setQuery }) => {
         build the flock. CAW CAW <br /> <br /> The CawFathers of Thugistan used
         bounties for generations to build nests, harvest the canna crops and to
         keep the vibe alive. Hunt, Submit, Earn. No matter your feathers, this
-        flock hunts bounties together. CAW
+        flock hunts bounties together.
       </p>
       <form className="mt-6 flex items-center space-x-4" onSubmit={onSubmit}>
         <div className="w-48">
