@@ -1,14 +1,14 @@
 const defaultSeo = {
-  title: "ThugDAO Bounty Tool",
-  titleTemplate: "%s | ThugDAO Bounty Tool",
-  description: `Welcome to ThugDAO Bounty Tool!`,
+  title: "Bowpow Bounty Tool",
+  titleTemplate: "%s | Bowpow Bounty Tool",
+  description: `Welcome to Bowpow Bounty Tool!`,
   openGraph: {
     url: `https://${
       process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_VERCEL_URL
     }`,
-    title: "ThugDAO Bounty Tool",
-    description: `Welcome to ThugDAO Bounty Tool!`,
-    site_name: "ThugDAO Bounty Tool",
+    title: "Bowpow Bounty Tool",
+    description: `Welcome to Bowpow Bounty Tool!`,
+    site_name: "Bowpow Bounty Tool",
   },
   additionalLinkTags: [
     {

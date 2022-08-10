@@ -125,14 +125,14 @@ const Contents = ({
           }}
         />
       </Step>
-      <Step title="About the Thugdao" hideLine>
+      <Step title="About the BowPow" hideLine>
         <p>
-          The ThugBirdz community is the glue that holds us all together, within
+          The BowPow community is the glue that holds us all together, within
           our flock we have some of the most diamond winged individuals on the
           planet. Our mission is simply to create an environment that
-          exemplifies kindness. The ThugBirdz community is the glue that holds
-          us all together, within our flock we have some of the most diamond
-          winged individuals on the planet.{" "}
+          exemplifies kindness. The BowPow community is the glue that holds us
+          all together, within our flock we have some of the most diamond winged
+          individuals on the planet.{" "}
         </p>
       </Step>
       {allowSubmission && (

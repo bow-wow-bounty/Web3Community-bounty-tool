@@ -57,9 +57,9 @@ const Header = ({ setQuery }) => {
     <div className="rounded-lg bg-theme-orange p-8 shadow">
       <p className="font-display text-3xl">Hunt Bounties</p>
       <p className="mt-3 max-w-4xl text-sm font-light leading-tight">
-        Get paid for being a ThugBird. Build a career in web3 and get rewarded
-        in SOL & USDC. <br /> <br /> Exclusive to ThugBirdz holders. Bounties
-        build the flock. CAW CAW <br /> <br /> The CawFathers of Thugistan used
+        Get paid for being a BowPow. Build a career in web3 and get rewarded in
+        SOL & USDC. <br /> <br /> Exclusive to BowPow holders. Bounties build
+        the flock. CAW CAW <br /> <br /> The CawFathers of BowPowistan used
         bounties for generations to build nests, harvest the canna crops and to
         keep the vibe alive. Hunt, Submit, Earn. No matter your feathers, this
         flock hunts bounties together.

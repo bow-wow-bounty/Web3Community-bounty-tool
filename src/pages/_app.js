@@ -17,16 +17,11 @@ const App = ({ Component, pageProps }) => {
         href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
       />
       <Head>
-        <title>ThugDAO Bounty Tool</title>
+        <title>Bowpow Bounty Tool</title>
         <meta
           property="og:title"
-          content="Welcome to ThugDAO Bounty Tool"
+          content="Welcome to Bowpow Bounty Tool"
           key="title"
-        />
-        <meta
-          property="og:image"
-          content="https://i.ibb.co/r7FmtS1/Screenshot-from-2022-08-04-08-20-03.jpg"
-          key="og-image"
         />
       </Head>
       <Modules>
