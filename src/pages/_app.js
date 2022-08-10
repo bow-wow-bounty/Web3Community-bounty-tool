@@ -17,10 +17,10 @@ const App = ({ Component, pageProps }) => {
         href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
       />
       <Head>
-        <title>Bowpow Bounty Tool</title>
+        <title>BowWow Bounty Tool</title>
         <meta
           property="og:title"
-          content="Welcome to Bowpow Bounty Tool"
+          content="Welcome to BowWow Bounty Tool"
           key="title"
         />
       </Head>
