@@ -33,7 +33,7 @@ const Header = () => {
       <div className="container mx-auto flex items-center">
         <div className="mr-2 ml-2 h-full lg:ml-0">
           <Link href="/">
-            <div className="relative h-full w-44 lg:w-96">
+            <div className="relative -ml-4 flex h-full w-44 lg:w-60">
               <Image src={logo} layout="fill" alt="Logo" objectFit="contain" />
             </div>
           </Link>

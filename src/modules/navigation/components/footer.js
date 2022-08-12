@@ -12,7 +12,7 @@ const Footer = () => {
           </div>
         </div>
         <p className="font-display text-lg">
-          BowWow<span className="ml-[1px] text-white">dao</span> copyright 2022
+          Bounty<span className="ml-[1px] text-white">Hub</span> copyright 2022
         </p>
       </div>
     </div>

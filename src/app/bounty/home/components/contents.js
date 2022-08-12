@@ -125,14 +125,14 @@ const Contents = ({
           }}
         />
       </Step>
-      <Step title="About the BowWow" hideLine>
+      <Step title="About the Bounty Hub" hideLine>
         <p>
-          The BowWow community is the glue that holds us all together, within
-          our flock we have some of the most diamond winged individuals on the
-          planet. Our mission is simply to create an environment that
-          exemplifies kindness. The BowWow community is the glue that holds us
-          all together, within our flock we have some of the most diamond winged
-          individuals on the planet.{" "}
+          The Bounty Hub community is the glue that holds us all together,
+          within our flock we have some of the most diamond winged individuals
+          on the planet. Our mission is simply to create an environment that
+          exemplifies kindness. The Bounty Hub community is the glue that holds
+          us all together, within our flock we have some of the most diamond
+          winged individuals on the planet.{" "}
         </p>
       </Step>
       {allowSubmission && (

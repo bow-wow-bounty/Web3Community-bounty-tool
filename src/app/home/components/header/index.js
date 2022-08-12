@@ -57,12 +57,12 @@ const Header = ({ setQuery }) => {
     <div className="rounded-lg bg-theme-orange p-8 shadow">
       <p className="font-display text-3xl">Hunt Bounties</p>
       <p className="mt-3 max-w-4xl text-sm font-light leading-tight">
-        Get paid for being a BowWow. Build a career in web3 and get rewarded in
-        SOL & USDC. <br /> <br /> Exclusive to BowWow holders. Bounties build
-        the flock. CAW CAW <br /> <br /> The CawFathers of BowWowistan used
-        bounties for generations to build nests, harvest the canna crops and to
-        keep the vibe alive. Hunt, Submit, Earn. No matter your feathers, this
-        flock hunts bounties together.
+        Get paid for being a Bounty Hub. Build a career in web3 and get rewarded
+        in SOL & USDC. <br /> <br /> Exclusive to Bounty Hub holders. Bounties
+        build the flock. CAW CAW <br /> <br /> The CawFathers of Bounty Hubistan
+        used bounties for generations to build nests, harvest the canna crops
+        and to keep the vibe alive. Hunt, Submit, Earn. No matter your feathers,
+        this flock hunts bounties together.
       </p>
       <form className="mt-6 flex items-center space-x-4" onSubmit={onSubmit}>
         <div className="w-48">

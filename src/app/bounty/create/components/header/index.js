@@ -13,12 +13,12 @@ const Header = () => {
       <div className="flex-1">
         <p className="font-display text-3xl">Create a Bounty</p>
         <p className="mt-3 max-w-3xl text-sm font-light leading-tight">
-          The BowWow community is the glue that holds us all together, within
-          our flock we have some of the most diamond winged individuals on the
-          planet. Our mission is simply to create an environment that
-          exemplifies kindness. The BowWow community is the glue that holds us
-          all together, within our flock we have some of the most diamond winged
-          individuals on the planet.
+          The Bounty Hub community is the glue that holds us all together,
+          within our flock we have some of the most diamond winged individuals
+          on the planet. Our mission is simply to create an environment that
+          exemplifies kindness. The Bounty Hub community is the glue that holds
+          us all together, within our flock we have some of the most diamond
+          winged individuals on the planet.
         </p>
       </div>
     </div>

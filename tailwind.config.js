@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: ["Upheaval", ...defaultTheme.fontFamily.sans],
+        display: ["Roboto", ...defaultTheme.fontFamily.sans],
         sans: ["Helvetica", "Arial", ...defaultTheme.fontFamily.sans],
         body: ["Helvetica", "Arial", ...defaultTheme.fontFamily.sans],
       },
@@ -21,6 +21,9 @@ module.exports = {
         "theme-blue": "#0B9AD9",
         "theme-dark-blue": "#1887A8",
         "theme-yellow": "#ca8a04",
+      },
+      fontWeight: {
+        display: ["700"],
       },
     },
   },
