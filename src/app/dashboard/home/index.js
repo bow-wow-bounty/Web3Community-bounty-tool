@@ -1,12 +1,12 @@
 /* eslint-disable react/jsx-key */
 import classNames from "classnames";
-import Image from "next/image";
+// import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useSortBy, useTable } from "react-table";
 
 import Api from "../../../api/instances/core";
-import logo from "../../../assets/logo-small.svg";
+// import logo from "../../../assets/logo-small.svg";
 import Loading from "../../../components/loading";
 import fields from "../../../config/dashboard-bounty-table-fields";
 
@@ -54,14 +54,14 @@ const Dashboard = () => {
           <div className="sticky left-0 top-0 flex w-full items-center justify-between rounded-t-md bg-theme-orange py-3 px-4">
             <p className="font-display text-2xl">Dashboard</p>
             <div className="h-full">
-              <div className="relative aspect-[5/3] w-12">
+              {/* <div className="relative aspect-[5/3] w-12">
                 <Image
                   src={logo}
                   layout="fill"
                   alt="Logo"
                   objectFit="contain"
                 />
-              </div>
+              </div> */}
             </div>
           </div>
           <table className="w-full border-hidden text-xs" {...getTableProps()}>

@@ -75,10 +75,15 @@ const CreateBounty = () => {
     <div className="min-h-full-page container mx-auto py-8">
       <Header />
       <form onSubmit={onSubmit} className="max-w-xl py-12">
-        <Step title="Upload Image">
-          <FileUploadInput control={control} name="image" errors={errors} />
+        <Step title="UPLOAD IMAGE">
+          <FileUploadInput
+            control={control}
+            name="image"
+            errors={errors}
+            label="Add a cover image for your Bounty"
+          />
         </Step>
-        <Step title="Title">
+        <Step title="TITLE">
           <Input
             type="text"
             name="title"
@@ -87,7 +92,7 @@ const CreateBounty = () => {
             label="Add a title to your bounty"
           />
         </Step>
-        <Step title="Category">
+        <Step title="CATEGORY">
           <Select
             type="text"
             name="category"
@@ -101,13 +106,13 @@ const CreateBounty = () => {
             ]}
           />
         </Step>
-        <Step title="Type">
+        <Step title="TYPE">
           <Select
             type="text"
             name="type"
             register={register}
             errors={errors}
-            label="Type"
+            label="Choose between open (anyone allowed to submit) and closed (specific wallets allowed to submit)"
             options={[
               { key: "open", value: "Open" },
               { key: "closed", value: "Closed" },
@@ -143,51 +148,56 @@ const CreateBounty = () => {
           </Step>
         )}
 
-        <Step title="Deadline">
+        <Step title="DEADLINE">
           <Input
             type="datetime-local"
             name="deadline"
             register={register}
             errors={errors}
-            label="Choose the date of expiry of the Bounty"
+            label="Choose the date and time of expiry of the Bounty, Time will be set as per UTC 00:00 GMT"
           />
         </Step>
-        <Step title="Description">
+        <Step title="DESCRIPTION">
           <Editor
             name="description"
             control={control}
             errors={errors}
-            label="Description"
+            label="Explain to your community what the bounty is about"
           />
         </Step>
-        <Step title="Todo">
-          <Editor name="todo" control={control} errors={errors} label="Todo" />
+        <Step title="TODO">
+          <Editor
+            name="todo"
+            control={control}
+            errors={errors}
+            label="Tasks that need to be completed for a successful bounty submission"
+          />
         </Step>
-        <Step title="Rewards and distribution">
+        <Step title="REWARDS AND DISTRIBUTION">
           <Editor
             name="distribution"
             control={control}
             errors={errors}
-            label="Rewards and distribution"
+            label="How will rewards be distributed amongst winners (incase of multiple winners)"
           />
         </Step>
-        <Step title="Number of winners">
+        <Step title="NUMBER OF WINNERS">
           <Input
             type="number"
             name="winnerCount"
             register={register}
             errors={errors}
-            label="Number of winners"
+            label="Number of wallets you are going to send rewards"
           />
         </Step>
-        <Step title="Total Reward">
+        <Step title="TOTAL REWARD">
           <div className="flex items-center space-x-2">
             <Input
               type="number"
               name="totalReward"
               register={register}
               errors={errors}
-              label="Total Reward"
+              label="Sum of the total reward amount for all the winners"
             />
             <Select
               type="text"
@@ -197,28 +207,28 @@ const CreateBounty = () => {
               label="&nbsp;"
               options={[
                 { key: "sol", value: "SOL" },
-                // { key: "usdc", value: "USDC" },
+                { key: "wl", value: "WL" },
               ]}
             />
           </div>
         </Step>
-        <Step title="Evaluation criteria">
+        <Step title="EVALUATION CRITERIA">
           <Editor
             name="evaluation"
             control={control}
             errors={errors}
-            label="Evaluation criteria"
+            label="Detailed explanation of criterias based on which winners will be judged"
           />
         </Step>
-        <Step title="Resources">
+        <Step title="RESOURCES">
           <Editor
             name="resources"
             control={control}
             errors={errors}
-            label="Resources"
+            label="Additional links the users can refer to for more information"
           />
         </Step>
-        <Step title="Point of Contact" hideLine>
+        <Step title="POINT OF CONTACT" hideLine>
           <div className="space-y-4">
             <Input
               type="text"

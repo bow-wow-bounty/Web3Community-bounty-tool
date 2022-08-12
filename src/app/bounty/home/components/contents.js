@@ -39,7 +39,7 @@ const Contents = ({
   return (
     <div className="mt-8">
       {bountywinners.length !== 0 && (
-        <Step title="Winners">
+        <Step title="WINNERS">
           <ul className="flex flex-col">
             {bountywinners.map((winner) => {
               return (
@@ -80,7 +80,7 @@ const Contents = ({
           </ul>
         </Step>
       )}
-      <Step title="About the bounty">
+      <Step title="ABOUT THE BOUNTY">
         <div
           dangerouslySetInnerHTML={{ __html: description }}
           className="prose max-w-full text-sm"
@@ -89,7 +89,7 @@ const Contents = ({
           }}
         />
       </Step>
-      <Step title="Your tasks">
+      <Step title="YOUR TASKS">
         <div
           dangerouslySetInnerHTML={{ __html: todo }}
           className="prose max-w-full text-sm"
@@ -98,7 +98,7 @@ const Contents = ({
           }}
         />
       </Step>
-      <Step title="Prize Distribution">
+      <Step title="PRIZE DISTRIBUTION">
         <div
           dangerouslySetInnerHTML={{ __html: distribution }}
           className="prose max-w-full text-sm"
@@ -107,7 +107,7 @@ const Contents = ({
           }}
         />
       </Step>
-      <Step title="Evaluation criteria">
+      <Step title="EVALUATION CRITERIA">
         <div
           dangerouslySetInnerHTML={{ __html: evaluation }}
           className="prose max-w-full text-sm"
@@ -116,7 +116,7 @@ const Contents = ({
           }}
         />
       </Step>
-      <Step title="Resources">
+      <Step title="RESOURCES">
         <div
           dangerouslySetInnerHTML={{ __html: resources }}
           className="prose max-w-full text-sm"
@@ -125,14 +125,13 @@ const Contents = ({
           }}
         />
       </Step>
-      <Step title="About the Bounty Hub" hideLine>
+      <Step title="ABOUT BOUNTY HUB" hideLine>
         <p>
-          The Bounty Hub community is the glue that holds us all together,
-          within our flock we have some of the most diamond winged individuals
-          on the planet. Our mission is simply to create an environment that
-          exemplifies kindness. The Bounty Hub community is the glue that holds
-          us all together, within our flock we have some of the most diamond
-          winged individuals on the planet.{" "}
+          The Bounty Hub is here to empower you to create and manage bounties
+          for your community in the most efficient manner. Our mission is simply
+          to create an environment where communities are able to contribute and
+          engage themselves through bounties and competition. Create your own
+          Bounty Hub for you community today.{" "}
         </p>
       </Step>
       {allowSubmission && (
