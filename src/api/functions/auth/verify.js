@@ -1,10 +1,10 @@
 import { PrismaClient } from "@prisma/client";
-import axios from "axios";
+// import axios from "axios";
 import jsonwebtoken from "jsonwebtoken";
 import { applySpec, pathOr, propOr } from "ramda";
 
 import { AUTH_EXPIRY_DURATION, AUTH_SECRET } from "../../../config/auth";
-import mintList from "../../../config/mint-list";
+// import mintList from "../../../config/mint-list";
 import { verifyAuthResponse } from "../../utils/auth";
 import handler from "../../utils/handler";
 
@@ -26,16 +26,16 @@ const authVerify = handler(
         },
       });
 
-      const nfts = await axios
-        .get(
-          `https://solana-gateway.moralis.io/account/mainnet/${publicKey}/nft`,
-          {
-            headers: {
-              "X-API-Key": process.env.SOLANA_GATEWAY_MORALIS_KEY,
-            },
-          }
-        )
-        .then(propOr([], "data"));
+      // const nfts = await axios
+      //   .get(
+      //     `https://solana-gateway.moralis.io/account/mainnet/${publicKey}/nft`,
+      //     {
+      //       headers: {
+      //         "X-API-Key": process.env.SOLANA_GATEWAY_MORALIS_KEY,
+      //       },
+      //     }
+      //   )
+      //   .then(propOr([], "data"));
 
       // const containsNft = Boolean(
       //   nfts.find((nft) => mintList.includes(nft.mint))

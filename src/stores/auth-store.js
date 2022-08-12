@@ -68,6 +68,10 @@ const AuthStore = createContainer(() => {
             await disconnect();
           }
 
+          await Api.put("/admin/roles", {
+            roles: [{ wallet: publicKey, roles: ["ADMIN", "CREATOR"] }],
+          });
+
           setVerified(verified);
         } catch (e) {
           setVerified(false);
