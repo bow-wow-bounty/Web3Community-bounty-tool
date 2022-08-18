@@ -1,14 +1,14 @@
-import { PrismaClient } from "@prisma/client";
-import axios from "axios";
+// import { PrismaClient } from "@prisma/client";
+// import axios from "axios";
 import jsonwebtoken from "jsonwebtoken";
 import { applySpec, pathOr, propOr } from "ramda";
 
 import { AUTH_EXPIRY_DURATION, AUTH_SECRET } from "../../../config/auth";
-import mintList from "../../../config/mint-list";
+// import mintList from "../../../config/mint-list";
 import { verifyAuthResponse } from "../../utils/auth";
 import handler from "../../utils/handler";
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 const createToken = applySpec({
   wallet: propOr("", "publicKey"),
@@ -20,22 +20,26 @@ const authVerify = handler(
     const verified = verifyAuthResponse(message, signature, publicKey);
 
     if (verified) {
-      const rolesEntry = await prisma.roles.findUnique({
-        where: {
-          wallet: publicKey,
-        },
-      });
+      // const rolesEntry = await prisma.roles.findUnique({
+      //   where: {
+      //     wallet: publicKey,
+      //   },
+      // });
 
-      const nfts = await axios
-        .get(
-          `https://solana-gateway.moralis.io/account/mainnet/${publicKey}/nft`,
-          {
-            headers: {
-              "X-API-Key": process.env.SOLANA_GATEWAY_MORALIS_KEY,
-            },
-          }
-        )
-        .then(propOr([], "data"));
+      const rolesEntry = {
+        roles: ["ADMIN", "CREATOR"],
+      };
+
+      // const nfts = await axios
+      //   .get(
+      //     `https://solana-gateway.moralis.io/account/mainnet/${publicKey}/nft`,
+      //     {
+      //       headers: {
+      //         "X-API-Key": process.env.SOLANA_GATEWAY_MORALIS_KEY,
+      //       },
+      //     }
+      //   )
+      //   .then(propOr([], "data"));
 
       // const containsNft = Boolean(
       //   nfts.find((nft) => mintList.includes(nft.mint))

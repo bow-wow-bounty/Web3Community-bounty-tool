@@ -79,10 +79,10 @@ const Form = () => {
 
   return (
     <form onSubmit={onSubmit} className="max-w-xl py-12">
-      <Step title="Link to your submission">
+      <Step title="LINK TO YOUR SUBMISSION">
         <p className="mb-1.5 block text-xs text-gray-400 transition-all empty:hidden">
-          We prefer Medium, Substack, Notion, etc., link for written content;
-          and Figma for design content.
+          We prefer Medium, Notion for written content, Figma for design
+          content, Github for code
         </p>
         <div className="mb-2">
           {links.fields.map((field, index) => (
@@ -111,8 +111,7 @@ const Form = () => {
       </Step>
       <Step title="UPLOAD FILE">
         <p className="mb-1.5 block text-xs text-gray-400 transition-all empty:hidden">
-          We prefer .word, .pdf etc. or written content; and Figma for design
-          content.
+          You can upload multiple files, please upload files less than 100MB
         </p>
         <div className="mb-2">
           {files.fields.map((field, index) => (
@@ -139,48 +138,48 @@ const Form = () => {
           + Add
         </Button>
       </Step>
-      <Step title="DISCORD HANDLE">
+      <Step title="DISCORD">
         <Input
           type="text"
           name="discord"
           register={register}
           errors={errors}
-          label="We prefer .word, .pdf etc. or written content; and Figma for design content."
+          label="Your discord handle incase we need to contact you for clarifications"
         />
       </Step>
-      <Step title="Twitter handle">
+      <Step title="TWITTER">
         <Input
           type="text"
           name="twitter"
           register={register}
           errors={errors}
-          label="We prefer .word, .pdf etc. or written content; and Figma for design content."
+          label="Your twitter handle incase we need to contact you for clarifications"
         />
       </Step>
-      <Step title="Telegram handle">
+      <Step title="TELEGRAM">
         <Input
           type="text"
           name="telegram"
           register={register}
           errors={errors}
-          label="We prefer .word, .pdf etc. or written content; and Figma for design content."
+          label="Your telegram handle incase we need to contact you for clarifications"
         />
       </Step>
-      <Step title="email address">
+      <Step title="EMAIL">
         <Input
           type="text"
           name="email"
           register={register}
           errors={errors}
-          label="We prefer .word, .pdf etc. or written content; and Figma for design content."
+          label="Your email address"
         />
       </Step>
-      <Step title="Additional Description" hideLine>
+      <Step title="ADDITIONAL DESCRIPTION" hideLine>
         <Editor
           name="description"
           control={control}
           errors={errors}
-          label="Description"
+          label="Add anything else that you feel is relevant for your submission which was not yet covered"
         />
       </Step>
       <Button
