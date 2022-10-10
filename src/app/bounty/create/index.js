@@ -187,6 +187,7 @@ const CreateBounty = () => {
           <div className="flex items-center space-x-2">
             <Input
               type="number"
+              step="0.0001"
               name="totalReward"
               register={register}
               errors={errors}
