@@ -97,6 +97,9 @@ const CreateBounty = () => {
             options={[
               { key: "design", value: "Design" },
               { key: "engineering", value: "Engineering" },
+              { key: "marketing", value: "Marketing" },
+              { key: "community", value: "Community" },
+              { key: "social", value: "Social" },
               { key: "other", value: "Other" },
             ]}
           />
