@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Bounty" ALTER COLUMN "totalReward" SET DATA TYPE DOUBLE PRECISION;

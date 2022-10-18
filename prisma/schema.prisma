@@ -56,7 +56,7 @@ model Bounty {
   resources      String
   distribution   String
   winnerCount    Int
-  totalReward    Int
+  totalReward    Float
   rewardCurrency String
   pocName        String
   pocTwitter     String
